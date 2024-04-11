@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyidl70ijlea4"]
+
+[ext_resource type="Texture2D" uid="uid://cmpevm4sknu3e" path="res://ball.png" id="1_lv85v"]
+[ext_resource type="Texture2D" uid="uid://c7bi3y2plqly4" path="res://light.png" id="2_j657d"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_676rp"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n7jay"]
+radius = 24.0
+
+[node name="ball" type="RigidBody2D" groups=["ball"]]
+collision_layer = 4
+collision_mask = 4
+physics_material_override = SubResource("PhysicsMaterial_676rp")
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_lv85v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n7jay")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3, 3)
+scale = Vector2(1.012, 1.012)
+texture = ExtResource("2_j657d")
