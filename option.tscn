@@ -56,6 +56,28 @@ offset_right = 856.0
 offset_bottom = 383.0
 text = "Finish mod"
 
+[node name="mapMenu" type="OptionButton" parent="."]
+offset_left = 784.0
+offset_top = 504.0
+offset_right = 960.0
+offset_bottom = 536.0
+item_count = 3
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Separator Line"
+popup/item_1/id = 1
+popup/item_2/text = "Goal Zone"
+popup/item_2/id = 2
+
+[node name="mapMod" type="Label" parent="."]
+offset_left = 808.0
+offset_top = 472.0
+offset_right = 913.0
+offset_bottom = 495.0
+text = "map modifier
+"
+
 [node name="goal" type="Label" parent="." groups=["goalControl"]]
 offset_left = 160.0
 offset_top = 368.0
@@ -132,6 +154,7 @@ text = "Reset"
 [connection signal="pressed" from="btnQuit" to="." method="_on_btn_quit_pressed"]
 [connection signal="pressed" from="btnPlay" to="." method="_on_btn_play_pressed"]
 [connection signal="item_selected" from="ModMenu" to="." method="_on_mod_menu_item_selected"]
+[connection signal="item_selected" from="mapMenu" to="." method="_on_map_menu_item_selected"]
 [connection signal="pressed" from="goal+" to="." method="_on_goalP_pressed"]
 [connection signal="pressed" from="goal-" to="." method="_on_goalM_pressed"]
 [connection signal="pressed" from="goalR" to="." method="_on_goal_r_pressed"]

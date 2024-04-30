@@ -9,6 +9,10 @@ func _ready():
 		$ModMenu.select(1)
 	elif global.goal_active:
 		$ModMenu.select(2)
+	match global.map:
+		"none": $mapMenu.select(0)
+		"separator": $mapMenu.select(1)
+		"zone": $mapMenu.select(2)
 	update_control()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,6 +31,12 @@ func _on_mod_menu_item_selected(index):
 	global.timer_active = index in [0,1]
 	global.goal_active = index in [0,2]
 	update_control()
+
+func _on_map_menu_item_selected(index):
+	match index:
+		0: global.map = "none"
+		1: global.map = "separator"
+		2: global.map = "zone"
 
 func update_control():
 	for control in get_tree().get_nodes_in_group("timerControl"):

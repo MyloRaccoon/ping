@@ -6,7 +6,6 @@ var goal : int = 10
 var timer_active : bool = true
 var goal_active : bool = true
 
-var separator : bool = false
-var goalZone : bool = false
+var map : String = "none"
 
 var playing : bool = false

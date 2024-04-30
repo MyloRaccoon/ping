@@ -19,20 +19,25 @@ var stock_pos_p2
 var stock_pos_ball
 
 func new_ball(ball_pos, p1_pos, p2_pos):
-	$Player.position = p1_pos
-	$Player2.position = p2_pos
+	$players/Player.position = p1_pos
+	$players/Player2.position = p2_pos
 	ball = ball_tscn.instantiate()
 	ball.position = ball_pos
 	call_deferred("add_child", ball)
 
 func _ready():
-	$firstTimer.start()
-	if global.separator:
-		$separator.show()
-		$separator/collisionbox.disabled = false
-	else:
-		$separator.hide()
-		$separator/collisionbox.disabled = true
+	$UI/firstTimer.start()
+	$map/separator.hide()
+	$goal1/p1Zone.hide()
+	$goal2/p2Zone.hide()
+	if global.map == "separator":
+		$map/separator.show()
+	if global.map == "zone":
+		$goal1/p1Zone.show()
+		$goal2/p2Zone.show()
+	$map/separator/collisionbox.disabled = !(global.map == "separator")
+	$goal1/p1Zone/CollisionShape2D.disabled = !(global.map == "zone")
+	$goal2/p2Zone/CollisionShape2D.disabled = !(global.map == "zone")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -42,20 +47,20 @@ func _process(_delta):
 		elif pausing:
 			resume()
 			
-	if int($firstTimer.time_left) == 0:
-		$firstTimerLB.text = "GO"
+	if int($UI/firstTimer.time_left) == 0:
+		$UI/firstTimerLB.text = "GO"
 	else:
-		$firstTimerLB.text = str(int($firstTimer.time_left))
+		$UI/firstTimerLB.text = str(int($UI/firstTimer.time_left))
 	
 	
 	if pausing:
-		$timerLB.text = str(int(pause_time_left))
+		$UI/timerLB.text = str(int(pause_time_left))
 	else:
-		$timerLB.text = str(int($Timer.time_left))
+		$UI/timerLB.text = str(int($UI/Timer.time_left))
 		if prolong:
-			$timerLB.text = "Prolongation !"
-	$pts1.text = str(pts1)
-	$pts2.text = str(pts2)
+			$UI/timerLB.text = "Prolongation !"
+	$UI/pts1.text = str(pts1)
+	$UI/pts2.text = str(pts2)
 
 func _on_goal_1_body_entered(body):
 	if body in get_tree().get_nodes_in_group("ball"):
@@ -67,7 +72,7 @@ func _on_goal_1_body_entered(body):
 				call_deferred("win", "2")
 			else:
 				ball.queue_free()
-				new_ball($p1BallSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
+				new_ball($p1BallSpawnPoint.position, $players/p1SpawnPoint.position, $players/p2SpawnPoint.position)
 		
 func _on_goal_2_body_entered(body):
 	if body in get_tree().get_nodes_in_group("ball"):
@@ -79,7 +84,7 @@ func _on_goal_2_body_entered(body):
 				call_deferred("win", "1")
 			else:
 				ball.queue_free()
-				new_ball($p2BallSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
+				new_ball($p2BallSpawnPoint.position, $players/p1SpawnPoint.position, $players/p2SpawnPoint.position)
 
 func win(winner):
 	match winner:
@@ -98,29 +103,29 @@ func _on_timer_timeout():
 
 func _on_first_timer_timeout():
 	if global.timer_active:
-		$Timer.start(global.timer)
-		$timerLB.show()
+		$UI/Timer.start(global.timer)
+		$UI/timerLB.show()
 	else:
-		$timerLB.hide()
-	$pts1.show()
-	$pts2.show()
-	$firstTimerLB.hide()
+		$UI/timerLB.hide()
+	$UI/pts1.show()
+	$UI/pts2.show()
+	$UI/firstTimerLB.hide()
 	global.playing = true
-	new_ball($middleBallSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
+	new_ball($middleBallSpawnPoint.position, $players/p1SpawnPoint.position, $players/p2SpawnPoint.position)
 
 func pause():
-	pause_time_left = $Timer.time_left
-	stock_pos_ball = $ball.position
-	stock_pos_p1 = $Player.position
-	stock_pos_p2 = $Player2.position
-	$Timer.stop()
+	pause_time_left = $UI/Timer.time_left
+	stock_pos_ball = ball.position
+	stock_pos_p1 = $players/Player.position
+	stock_pos_p2 = $players/Player2.position
+	$UI/Timer.stop()
 	pausing = true
 	$PauseMenu.show()
 	global.playing = false
 	ball.queue_free()
 
 func resume():
-	$Timer.start(pause_time_left)
+	$UI/Timer.start(pause_time_left)
 	pausing = false
 	$PauseMenu.hide()
 	global.playing = true
