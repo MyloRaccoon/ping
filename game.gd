@@ -27,6 +27,12 @@ func new_ball(ball_pos, p1_pos, p2_pos):
 
 func _ready():
 	$firstTimer.start()
+	if global.separator:
+		$separator.show()
+		$separator/collisionbox.disabled = false
+	else:
+		$separator.hide()
+		$separator/collisionbox.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -61,7 +67,7 @@ func _on_goal_1_body_entered(body):
 				call_deferred("win", "2")
 			else:
 				ball.queue_free()
-				new_ball($ballSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
+				new_ball($p1BallSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
 		
 func _on_goal_2_body_entered(body):
 	if body in get_tree().get_nodes_in_group("ball"):
@@ -73,7 +79,7 @@ func _on_goal_2_body_entered(body):
 				call_deferred("win", "1")
 			else:
 				ball.queue_free()
-				new_ball($ballSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
+				new_ball($p2BallSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
 
 func win(winner):
 	match winner:
@@ -100,7 +106,7 @@ func _on_first_timer_timeout():
 	$pts2.show()
 	$firstTimerLB.hide()
 	global.playing = true
-	new_ball($ballSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
+	new_ball($middleBallSpawnPoint.position, $p1SpawnPoint.position, $p2SpawnPoint.position)
 
 func pause():
 	pause_time_left = $Timer.time_left

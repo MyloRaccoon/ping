@@ -1,14 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6mt6o3s6l44i"]
+[gd_scene load_steps=13 format=3 uid="uid://b6mt6o3s6l44i"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_di1l8"]
 [ext_resource type="PackedScene" uid="uid://b0tvpet4qy7kh" path="res://player.tscn" id="1_jds34"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dsfr3"]
+a = Vector2(-8, -440)
+b = Vector2(-8, 456)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cabtn"]
 font_size = 500
 
 [sub_resource type="LabelSettings" id="LabelSettings_8j51r"]
 font_size = 500
-font_color = Color(0.45098, 0.45098, 0.45098, 1)
+font_color = Color(0.270588, 0.388235, 0.917647, 0.929412)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ggfhb"]
+font_size = 500
+font_color = Color(0.819608, 0.176471, 0.137255, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nejds"]
 size = Vector2(1145, 66)
@@ -35,6 +43,20 @@ script = ExtResource("1_di1l8")
 offset_right = 1168.0
 offset_bottom = 672.0
 color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[node name="separator" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="line" type="Line2D" parent="separator"]
+position = Vector2(832, 728)
+rotation = -3.12763
+points = PackedVector2Array(255.417, -43.5704, 267.927, 852.342)
+default_color = Color(0.458824, 0.458824, 0.458824, 1)
+
+[node name="collisionbox" type="CollisionShape2D" parent="separator"]
+position = Vector2(584, 312)
+shape = SubResource("SegmentShape2D_dsfr3")
 
 [node name="firstTimer" type="Timer" parent="."]
 wait_time = 4.0
@@ -67,7 +89,7 @@ offset_top = -24.0
 offset_right = 925.0
 offset_bottom = 658.0
 text = "0"
-label_settings = SubResource("LabelSettings_8j51r")
+label_settings = SubResource("LabelSettings_ggfhb")
 
 [node name="Player" parent="." instance=ExtResource("1_jds34")]
 position = Vector2(256, 256)
@@ -150,8 +172,14 @@ position = Vector2(256, 256)
 [node name="p2SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(896, 384)
 
-[node name="ballSpawnPoint" type="Marker2D" parent="."]
+[node name="middleBallSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(576, 320)
+
+[node name="p1BallSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(384, 320)
+
+[node name="p2BallSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(768, 320)
 
 [node name="goal1" type="Area2D" parent="."]
 collision_layer = 7
