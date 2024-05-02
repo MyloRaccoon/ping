@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6mt6o3s6l44i"]
+[gd_scene load_steps=15 format=3 uid="uid://b6mt6o3s6l44i"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_di1l8"]
 [ext_resource type="PackedScene" uid="uid://b0tvpet4qy7kh" path="res://player.tscn" id="1_jds34"]
 [ext_resource type="Texture2D" uid="uid://b2o8srpfhgwdw" path="res://goalZone.png" id="2_4tqgp"]
+[ext_resource type="PackedScene" uid="uid://np1k8omx8hjg" path="res://scenes/menu.tscn" id="4_765h8"]
+[ext_resource type="PackedScene" uid="uid://b60swerlqj70r" path="res://scenes/button.tscn" id="5_n6qp6"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ay4vm"]
 a = Vector2(8, -211.5)
@@ -257,23 +259,18 @@ text = "PAUSE"
 label_settings = SubResource("LabelSettings_pcg6r")
 horizontal_alignment = 1
 
-[node name="quitToMenu" type="Button" parent="PauseMenu"]
-offset_left = 512.0
-offset_top = 352.0
-offset_right = 648.0
-offset_bottom = 408.0
-text = "Quit to menu"
+[node name="menu" parent="PauseMenu" instance=ExtResource("4_765h8")]
 
-[node name="Resume" type="Button" parent="PauseMenu"]
-offset_left = 512.0
-offset_top = 256.0
-offset_right = 640.0
-offset_bottom = 320.0
-text = "Resume"
+[node name="btn_resume" parent="PauseMenu/menu" instance=ExtResource("5_n6qp6")]
+position = Vector2(584, 320)
+label = "resume"
+
+[node name="btn_quit2" parent="PauseMenu/menu" instance=ExtResource("5_n6qp6")]
+position = Vector2(576, 448)
+label = "quit"
 
 [connection signal="body_entered" from="goal1" to="." method="_on_goal_1_body_entered"]
 [connection signal="body_entered" from="goal2" to="." method="_on_goal_2_body_entered"]
 [connection signal="timeout" from="UI/firstTimer" to="." method="_on_first_timer_timeout"]
 [connection signal="timeout" from="UI/Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="PauseMenu/quitToMenu" to="." method="_on_quit_to_menu_pressed"]
-[connection signal="pressed" from="PauseMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/menu" to="." method="_on_menu_pressed"]

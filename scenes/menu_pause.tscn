@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://byidc5jfmffmw"]
+
+[ext_resource type="PackedScene" uid="uid://b60swerlqj70r" path="res://scenes/button.tscn" id="1_5a4x2"]
+[ext_resource type="Script" path="res://scripts/menu_pause.gd" id="1_a58xl"]
+
+[node name="menuPause" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_a58xl")
+
+[node name="btn_resume" parent="." instance=ExtResource("1_5a4x2")]
+position = Vector2(576, 320)
+
+[node name="btn_quit" parent="." instance=ExtResource("1_5a4x2")]
+position = Vector2(576, 448)
+
+[connection signal="pressed" from="btn_resume" to="." method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="btn_quit" to="." method="_on_btn_quit_pressed"]

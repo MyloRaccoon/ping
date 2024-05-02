@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b60swerlqj70r"]
+
+[ext_resource type="Script" path="res://scripts/button.gd" id="1_jh4i8"]
+
+[node name="button" type="Node2D"]
+position = Vector2(384, 264)
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_jh4i8")
+
+[node name="sprite" type="Sprite2D" parent="."]

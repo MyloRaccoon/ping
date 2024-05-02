@@ -24,6 +24,7 @@ func new_ball(ball_pos, p1_pos, p2_pos):
 	call_deferred("add_child", ball)
 
 func _ready():
+	$PauseMenu/menu.activate(false)
 	$UI/firstTimer.start()
 	$map/separator.hide()
 	$goal1/p1Zone.hide()
@@ -117,6 +118,7 @@ func pause():
 	$UI/Timer.stop()
 	pausing = true
 	$PauseMenu.show()
+	$PauseMenu/menu.activate(true)
 	global.playing = false
 	ball.linear_velocity = Vector2(0,0)
 
@@ -126,9 +128,9 @@ func resume():
 	$PauseMenu.hide()
 	global.playing = true
 	ball.linear_velocity = stock_ball_velocity
+	$PauseMenu/menu.activate(false)
 
-func _on_resume_pressed():
-	resume()
-
-func _on_quit_to_menu_pressed():
-	get_tree().change_scene_to_file("res://option.tscn")
+func _on_menu_pressed(btn):
+	match btn:
+		"resume": resume()
+		"quit": get_tree().change_scene_to_file("res://option.tscn")
