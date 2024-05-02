@@ -14,9 +14,7 @@ var prolong = false
 var pausing = false
 
 var pause_time_left
-var stock_pos_p1
-var stock_pos_p2
-var stock_pos_ball
+var stock_ball_velocity
 
 func new_ball(ball_pos, p1_pos, p2_pos):
 	$players/Player.position = p1_pos
@@ -115,21 +113,19 @@ func _on_first_timer_timeout():
 
 func pause():
 	pause_time_left = $UI/Timer.time_left
-	stock_pos_ball = ball.position
-	stock_pos_p1 = $players/Player.position
-	stock_pos_p2 = $players/Player2.position
+	stock_ball_velocity = ball.linear_velocity
 	$UI/Timer.stop()
 	pausing = true
 	$PauseMenu.show()
 	global.playing = false
-	ball.queue_free()
+	ball.linear_velocity = Vector2(0,0)
 
 func resume():
 	$UI/Timer.start(pause_time_left)
 	pausing = false
 	$PauseMenu.hide()
 	global.playing = true
-	new_ball(stock_pos_ball, stock_pos_p1, stock_pos_p2)
+	ball.linear_velocity = stock_ball_velocity
 
 func _on_resume_pressed():
 	resume()

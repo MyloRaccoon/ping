@@ -9,3 +9,5 @@ var goal_active : bool = true
 var map : String = "none"
 
 var playing : bool = false
+
+var last_ball_velocity

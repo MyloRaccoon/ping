@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bxprow8ab0pte"]
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+position = Vector2(320, 208)
+speed_scale = 0.0
+explosiveness = 1.0
+randomness = 0.48
+gravity = Vector2(0, 0)
+scale_amount_min = 4.0
+scale_amount_max = 4.0
