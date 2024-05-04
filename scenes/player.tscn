@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0tvpet4qy7kh"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_nkyu8"]
+[ext_resource type="Texture2D" uid="uid://c7bi3y2plqly4" path="res://assets/light.png" id="2_gfjxq"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+motion_mode = 1
+script = ExtResource("1_nkyu8")
+index = "1"
+push_force = 80.0
+base_speed = 800
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-32, -64, 32, -64, 64, -32, 64, 32, 32, 64, -32, 64, -64, 32, -64, -32)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3, 3)
+scale = Vector2(1.012, 1.012)
+texture = ExtResource("2_gfjxq")

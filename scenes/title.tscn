@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://p40tqrda3sy5"]
+
+[ext_resource type="Script" path="res://scripts/Title.gd" id="1_0sp4h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fkhey"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_w0twx"]
+font_size = 25
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_0sp4h")
+
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[node name="title" type="Label" parent="."]
+offset_left = 464.0
+offset_top = 152.0
+offset_right = 686.0
+offset_bottom = 289.0
+text = "PING"
+label_settings = SubResource("LabelSettings_fkhey")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 512.0
+offset_top = 432.0
+offset_right = 649.0
+offset_bottom = 467.0
+text = "press enter"
+label_settings = SubResource("LabelSettings_w0twx")

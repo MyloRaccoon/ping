@@ -1,21 +1,27 @@
 extends Node2D
 
-signal pressed(name)
-
 @export var label : String
+@export var checkbox : bool
 var hovered : bool = false
-var btn_img 
-var btn_hover 
-var active : bool = true
+var selected : bool = false
+var img
+var img_hover
+var img_select
+var img_hover_select
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	btn_img = load("res://assets/UI/"+ label +".png")
-	btn_hover = load("res://assets/UI/"+ label +"Hover.png")
+	img = load("res://assets/UI/"+ label +".png")
+	img_hover = load("res://assets/UI/"+ label +"Hover.png")
+	if checkbox:
+		img_select = load("res://assets/UI/"+ label +"Select.png")
+		img_hover_select = load("res://assets/UI/"+ label +"HoverSelect.png")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if active:	
-		if hovered:
-			$sprite.texture = btn_hover
-		else:
-			$sprite.texture = btn_img
+func _process(_delta):
+	var sufix_img : String = ""
+	if hovered:
+		sufix_img += "Hover"
+	if selected and checkbox:
+		sufix_img += "Select"
+	sufix_img += ".png"
+	$sprite.texture = load("res://assets/UI/"+ label + sufix_img)

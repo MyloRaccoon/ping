@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="ping"
-run/main_scene="res://title.tscn"
+run/main_scene="res://scenes/title.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-global="*res://global.gd"
+global="*res://scripts/global.gd"
 
 [display]
 

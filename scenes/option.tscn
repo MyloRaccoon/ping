@@ -1,0 +1,158 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0knmp8p2f8aj"]
+
+[ext_resource type="Script" path="res://scripts/option.gd" id="1_14su1"]
+[ext_resource type="PackedScene" uid="uid://b0tlbykdpriee" path="res://scenes/menu_menu.tscn" id="2_rt1fo"]
+[ext_resource type="PackedScene" uid="uid://np1k8omx8hjg" path="res://scenes/menu.tscn" id="3_igt7r"]
+[ext_resource type="PackedScene" uid="uid://b60swerlqj70r" path="res://scenes/button.tscn" id="4_77x3r"]
+[ext_resource type="PackedScene" uid="uid://cpu6f4r417uhj" path="res://scenes/transition.tscn" id="5_51q3p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3hl6l"]
+font_size = 100
+
+[node name="option" type="Node2D"]
+script = ExtResource("1_14su1")
+
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+
+[node name="title" type="Label" parent="."]
+offset_left = 464.0
+offset_top = 152.0
+offset_right = 686.0
+offset_bottom = 289.0
+text = "PING"
+label_settings = SubResource("LabelSettings_3hl6l")
+
+[node name="finishMod" type="Label" parent="."]
+offset_left = 696.0
+offset_top = 320.0
+offset_right = 781.0
+offset_bottom = 343.0
+text = "Finish mod"
+
+[node name="mapMod" type="Label" parent="."]
+offset_left = 864.0
+offset_top = 320.0
+offset_right = 969.0
+offset_bottom = 343.0
+text = "map modifier
+"
+
+[node name="goal" type="Label" parent="." groups=["goalControl"]]
+offset_left = 160.0
+offset_top = 368.0
+offset_right = 200.0
+offset_bottom = 391.0
+text = "Goal:"
+
+[node name="Ngoal" type="Label" parent="." groups=["goalControl"]]
+offset_left = 168.0
+offset_top = 400.0
+offset_right = 208.0
+offset_bottom = 423.0
+text = "10"
+
+[node name="Timer" type="Label" parent="." groups=["timerControl"]]
+offset_left = 336.0
+offset_top = 368.0
+offset_right = 386.0
+offset_bottom = 391.0
+text = "Timer:
+"
+
+[node name="intTimer" type="Label" parent="." groups=["timerControl"]]
+offset_left = 320.0
+offset_top = 392.0
+offset_right = 392.0
+offset_bottom = 424.0
+text = "60
+"
+horizontal_alignment = 1
+
+[node name="menuMenu" parent="." instance=ExtResource("2_rt1fo")]
+default = 2
+orientation = "h"
+
+[node name="goal" parent="menuMenu" instance=ExtResource("3_igt7r")]
+layout_mode = 1
+
+[node name="btn_plus" parent="menuMenu/goal" instance=ExtResource("4_77x3r")]
+position = Vector2(232, 392)
+label = "plus"
+
+[node name="btn_minus" parent="menuMenu/goal" instance=ExtResource("4_77x3r")]
+position = Vector2(232, 440)
+label = "minus"
+
+[node name="btn_reset" parent="menuMenu/goal" instance=ExtResource("4_77x3r")]
+position = Vector2(184, 472)
+label = "reset"
+
+[node name="timer" parent="menuMenu" instance=ExtResource("3_igt7r")]
+layout_mode = 1
+
+[node name="btn_plus" parent="menuMenu/timer" instance=ExtResource("4_77x3r")]
+position = Vector2(416, 392)
+label = "plus"
+
+[node name="btn_minus" parent="menuMenu/timer" instance=ExtResource("4_77x3r")]
+position = Vector2(416, 440)
+label = "minus"
+
+[node name="btn_reset" parent="menuMenu/timer" instance=ExtResource("4_77x3r")]
+position = Vector2(360, 472)
+label = "reset"
+
+[node name="play" parent="menuMenu" instance=ExtResource("3_igt7r")]
+layout_mode = 1
+
+[node name="btn_play" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
+position = Vector2(576, 416)
+label = "play"
+
+[node name="btn_quit" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
+position = Vector2(576, 528)
+label = "quit"
+
+[node name="finishModMenu" parent="menuMenu" instance=ExtResource("3_igt7r")]
+layout_mode = 1
+checkbox = true
+
+[node name="btn_tng" parent="menuMenu/finishModMenu" instance=ExtResource("4_77x3r")]
+position = Vector2(736, 384)
+label = "tng"
+
+[node name="btn_timer" parent="menuMenu/finishModMenu" instance=ExtResource("4_77x3r")]
+position = Vector2(736, 448)
+label = "timer"
+
+[node name="btn_goal" parent="menuMenu/finishModMenu" instance=ExtResource("4_77x3r")]
+position = Vector2(736, 512)
+label = "goal"
+
+[node name="mapModifierMenu" parent="menuMenu" instance=ExtResource("3_igt7r")]
+layout_mode = 1
+checkbox = true
+
+[node name="btn_none" parent="menuMenu/mapModifierMenu" instance=ExtResource("4_77x3r")]
+position = Vector2(920, 384)
+label = "none"
+
+[node name="btn_separator" parent="menuMenu/mapModifierMenu" instance=ExtResource("4_77x3r")]
+position = Vector2(920, 448)
+label = "separator"
+
+[node name="btn_zone" parent="menuMenu/mapModifierMenu" instance=ExtResource("4_77x3r")]
+position = Vector2(920, 512)
+label = "zone"
+
+[node name="transition" parent="." instance=ExtResource("5_51q3p")]
+
+[connection signal="pressed" from="menuMenu/goal" to="." method="_on_goal_pressed"]
+[connection signal="pressed" from="menuMenu/timer" to="." method="_on_timer_pressed"]
+[connection signal="pressed" from="menuMenu/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="menuMenu/finishModMenu" to="." method="_on_finish_mod_menu_pressed"]
+[connection signal="pressed" from="menuMenu/mapModifierMenu" to="." method="_on_map_modifier_menu_pressed"]
+[connection signal="exited" from="transition" to="." method="_on_transition_exited"]

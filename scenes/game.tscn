@@ -1,0 +1,279 @@
+[gd_scene load_steps=16 format=3 uid="uid://b6mt6o3s6l44i"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_r2cec"]
+[ext_resource type="Texture2D" uid="uid://b2o8srpfhgwdw" path="res://assets/goalZone.png" id="2_7r47u"]
+[ext_resource type="PackedScene" uid="uid://b0tvpet4qy7kh" path="res://scenes/player.tscn" id="3_10dy2"]
+[ext_resource type="PackedScene" uid="uid://np1k8omx8hjg" path="res://scenes/menu.tscn" id="4_30k1x"]
+[ext_resource type="PackedScene" uid="uid://b60swerlqj70r" path="res://scenes/button.tscn" id="5_6syb2"]
+[ext_resource type="PackedScene" uid="uid://cpu6f4r417uhj" path="res://scenes/transition.tscn" id="6_1h45d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8j51r"]
+font_size = 500
+font_color = Color(0.270588, 0.388235, 0.917647, 0.929412)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ggfhb"]
+font_size = 500
+font_color = Color(0.819608, 0.176471, 0.137255, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dsfr3"]
+a = Vector2(-8, -440)
+b = Vector2(-8, 456)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ay4vm"]
+a = Vector2(8, -211.5)
+b = Vector2(8, 204.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ato3"]
+radius = 264.0
+height = 640.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws4ey"]
+size = Vector2(96.5, 512)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cabtn"]
+font_size = 500
+
+[sub_resource type="LabelSettings" id="LabelSettings_eg5xe"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_pcg6r"]
+font_size = 50
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_r2cec")
+
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1168.0
+offset_bottom = 672.0
+color = Color(0.0588235, 0.0588235, 0.0588235, 0.988235)
+
+[node name="middleBallSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(576, 320)
+
+[node name="p1BallSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(384, 320)
+
+[node name="p2BallSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(768, 320)
+
+[node name="pts1" type="Label" parent="."]
+visible = false
+offset_left = 224.0
+offset_top = -24.0
+offset_right = 509.0
+offset_bottom = 658.0
+text = "0"
+label_settings = SubResource("LabelSettings_8j51r")
+
+[node name="pts2" type="Label" parent="."]
+visible = false
+offset_left = 640.0
+offset_top = -24.0
+offset_right = 925.0
+offset_bottom = 658.0
+text = "0"
+label_settings = SubResource("LabelSettings_ggfhb")
+
+[node name="separator" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="line" type="Line2D" parent="separator"]
+position = Vector2(832, 728)
+rotation = -3.12763
+points = PackedVector2Array(255.417, -43.5704, 267.927, 852.342)
+default_color = Color(0.458824, 0.458824, 0.458824, 1)
+
+[node name="collisionbox" type="CollisionShape2D" parent="separator"]
+position = Vector2(584, 312)
+shape = SubResource("SegmentShape2D_dsfr3")
+
+[node name="goal1" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="limit" type="StaticBody2D" parent="goal1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal1/limit"]
+position = Vector2(-8, 323.5)
+shape = SubResource("SegmentShape2D_ay4vm")
+
+[node name="p1Zone" type="StaticBody2D" parent="goal1"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal1/p1Zone"]
+position = Vector2(-8, 320)
+shape = SubResource("CapsuleShape2D_3ato3")
+debug_color = Color(0.309804, 0.615686, 0.341176, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="goal1/p1Zone"]
+position = Vector2(8, 320)
+texture = ExtResource("2_7r47u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal1"]
+position = Vector2(-79.75, 320)
+shape = SubResource("RectangleShape2D_ws4ey")
+
+[node name="goal2" type="Area2D" parent="."]
+position = Vector2(1152, 640)
+rotation = 3.14159
+collision_layer = 4
+collision_mask = 4
+
+[node name="limit" type="StaticBody2D" parent="goal2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="goal2/limit"]
+position = Vector2(-8, 323.5)
+shape = SubResource("SegmentShape2D_ay4vm")
+
+[node name="p2Zone" type="StaticBody2D" parent="goal2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal2/p2Zone"]
+position = Vector2(-8, 320)
+shape = SubResource("CapsuleShape2D_3ato3")
+debug_color = Color(0.309804, 0.615686, 0.341176, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="goal2/p2Zone"]
+position = Vector2(8, 320)
+texture = ExtResource("2_7r47u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal2"]
+position = Vector2(-72.001, 328)
+shape = SubResource("RectangleShape2D_ws4ey")
+
+[node name="wall" type="StaticBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="NW" type="ColorRect" parent="wall"]
+offset_left = -95.0
+offset_top = 36.0
+offset_right = 217.0
+offset_bottom = 146.0
+rotation = -0.523598
+color = Color(0.823529, 0.823529, 0.823529, 1)
+
+[node name="SW" type="ColorRect" parent="wall"]
+offset_left = -32.0
+offset_top = 512.0
+offset_right = 280.0
+offset_bottom = 645.0
+rotation = 0.523598
+color = Color(0.823529, 0.823529, 0.823529, 1)
+
+[node name="NE" type="ColorRect" parent="wall"]
+offset_left = 986.0
+offset_top = -121.0
+offset_right = 1298.0
+offset_bottom = -5.0
+rotation = 0.523598
+color = Color(0.823529, 0.823529, 0.823529, 1)
+
+[node name="SE" type="ColorRect" parent="wall"]
+offset_left = 928.0
+offset_top = 656.0
+offset_right = 1240.0
+offset_bottom = 788.0
+rotation = -0.523598
+color = Color(0.823529, 0.823529, 0.823529, 1)
+
+[node name="upWall" type="CollisionPolygon2D" parent="wall"]
+polygon = PackedVector2Array(192, 0, 960, 0, 1152, 112, 1152, -64, 0, -64, 0, 112)
+
+[node name="upWall2" type="CollisionPolygon2D" parent="wall"]
+position = Vector2(1152, 640)
+rotation = 3.14159
+polygon = PackedVector2Array(192, 0, 960, 0, 1152, 112, 1152, -64, 0, -64, 0, 112)
+
+[node name="players" type="Node2D" parent="."]
+
+[node name="Player" parent="players" instance=ExtResource("3_10dy2")]
+position = Vector2(256, 256)
+collision_layer = 5
+collision_mask = 5
+
+[node name="Player2" parent="players" instance=ExtResource("3_10dy2")]
+position = Vector2(896, 384)
+collision_layer = 6
+collision_mask = 6
+index = "2"
+
+[node name="p1SpawnPoint" type="Marker2D" parent="players"]
+position = Vector2(256, 256)
+
+[node name="p2SpawnPoint" type="Marker2D" parent="players"]
+position = Vector2(896, 384)
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="firstTimer" type="Timer" parent="Timers"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="firstTimerLB" type="Label" parent="Timers"]
+offset_left = 208.0
+offset_top = -40.0
+offset_right = 965.0
+offset_bottom = 642.0
+text = "3
+"
+label_settings = SubResource("LabelSettings_cabtn")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="Timers"]
+wait_time = 40.0
+one_shot = true
+
+[node name="timerLB" type="Label" parent="Timers"]
+visible = false
+offset_left = 392.0
+offset_top = 8.0
+offset_right = 768.0
+offset_bottom = 77.0
+text = "30
+"
+label_settings = SubResource("LabelSettings_eg5xe")
+horizontal_alignment = 1
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0, 0, 0, 0.952941)
+
+[node name="menu" parent="PauseMenu" instance=ExtResource("4_30k1x")]
+orientation = "v"
+
+[node name="btn_resume" parent="PauseMenu/menu" instance=ExtResource("5_6syb2")]
+position = Vector2(584, 320)
+label = "resume"
+
+[node name="btn_quit2" parent="PauseMenu/menu" instance=ExtResource("5_6syb2")]
+position = Vector2(576, 448)
+label = "quit"
+
+[node name="Label" type="Label" parent="PauseMenu"]
+offset_left = 480.0
+offset_top = 152.0
+offset_right = 672.0
+offset_bottom = 240.0
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_pcg6r")
+horizontal_alignment = 1
+
+[node name="transition" parent="." instance=ExtResource("6_1h45d")]
+
+[connection signal="body_entered" from="goal1" to="." method="_on_goal_1_body_entered"]
+[connection signal="body_entered" from="goal2" to="." method="_on_goal_2_body_entered"]
+[connection signal="timeout" from="Timers/firstTimer" to="." method="_on_first_timer_timeout"]
+[connection signal="timeout" from="Timers/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="PauseMenu/menu" to="." method="_on_menu_pressed"]
+[connection signal="exited" from="transition" to="." method="_on_transition_exited"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpu6f4r417uhj"]
+
+[ext_resource type="Script" path="res://scripts/transition.gd" id="1_yorar"]
+
+[node name="transition" type="CanvasLayer"]
+script = ExtResource("1_yorar")
+
+[node name="enter" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+
+[node name="EnterVisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="enter"]
+position = Vector2(576, 320)
+scale = Vector2(57.6, 32)
+
+[node name="exit" type="ColorRect" parent="."]
+offset_left = 1152.0
+offset_right = 2304.0
+offset_bottom = 640.0
+color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+
+[node name="ExitVisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="exit"]
+position = Vector2(1152, 320)
+scale = Vector2(0.0999976, 32)
+
+[connection signal="screen_exited" from="enter/EnterVisibleOnScreenNotifier2D" to="." method="_on_enter_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_entered" from="exit/ExitVisibleOnScreenNotifier2D" to="." method="_on_exit_visible_on_screen_notifier_2d_screen_entered"]
