@@ -43,8 +43,8 @@ font_size = 50
 script = ExtResource("1_r2cec")
 
 [node name="background" type="ColorRect" parent="."]
-offset_right = 1168.0
-offset_bottom = 672.0
+offset_right = 1152.0
+offset_bottom = 640.0
 color = Color(0.0588235, 0.0588235, 0.0588235, 0.988235)
 
 [node name="middleBallSpawnPoint" type="Marker2D" parent="."]
@@ -58,20 +58,21 @@ position = Vector2(768, 320)
 
 [node name="pts1" type="Label" parent="."]
 visible = false
-offset_left = 224.0
 offset_top = -24.0
-offset_right = 509.0
+offset_right = 576.0
 offset_bottom = 658.0
 text = "0"
 label_settings = SubResource("LabelSettings_8j51r")
+horizontal_alignment = 2
 
 [node name="pts2" type="Label" parent="."]
 visible = false
-offset_left = 640.0
+offset_left = 576.0
 offset_top = -24.0
-offset_right = 925.0
+offset_right = 1154.0
 offset_bottom = 658.0
-text = "0"
+text = "0
+"
 label_settings = SubResource("LabelSettings_ggfhb")
 
 [node name="separator" type="StaticBody2D" parent="."]
@@ -85,7 +86,7 @@ points = PackedVector2Array(255.417, -43.5704, 267.927, 852.342)
 default_color = Color(0.458824, 0.458824, 0.458824, 1)
 
 [node name="collisionbox" type="CollisionShape2D" parent="separator"]
-position = Vector2(584, 312)
+position = Vector2(584, 320)
 shape = SubResource("SegmentShape2D_dsfr3")
 
 [node name="goal1" type="Area2D" parent="."]
@@ -217,11 +218,11 @@ one_shot = true
 autostart = true
 
 [node name="firstTimerLB" type="Label" parent="Timers"]
-offset_left = 208.0
-offset_top = -40.0
-offset_right = 965.0
-offset_bottom = 642.0
-text = "3
+offset_left = 200.0
+offset_top = -24.0
+offset_right = 957.0
+offset_bottom = 658.0
+text = "GO
 "
 label_settings = SubResource("LabelSettings_cabtn")
 horizontal_alignment = 1
@@ -270,6 +271,9 @@ label_settings = SubResource("LabelSettings_pcg6r")
 horizontal_alignment = 1
 
 [node name="transition" parent="." instance=ExtResource("6_1h45d")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 320)
 
 [connection signal="body_entered" from="goal1" to="." method="_on_goal_1_body_entered"]
 [connection signal="body_entered" from="goal2" to="." method="_on_goal_2_body_entered"]

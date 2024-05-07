@@ -6,9 +6,7 @@ extends CharacterBody2D
 var speed
 
 func _ready():
-	match index:
-		"1": $Sprite2D.set_texture(preload("res://assets/p1.png"))
-		"2": $Sprite2D.set_texture(preload("res://assets/p2.png"))
+	$Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
 
 func _physics_process(_delta):
 	if global.playing:

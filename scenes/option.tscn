@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0knmp8p2f8aj"]
+[gd_scene load_steps=13 format=3 uid="uid://c0knmp8p2f8aj"]
 
 [ext_resource type="Script" path="res://scripts/option.gd" id="1_14su1"]
 [ext_resource type="PackedScene" uid="uid://b0tlbykdpriee" path="res://scenes/menu_menu.tscn" id="2_rt1fo"]
@@ -9,6 +9,24 @@
 [sub_resource type="LabelSettings" id="LabelSettings_3hl6l"]
 font_size = 100
 
+[sub_resource type="LabelSettings" id="LabelSettings_vlqbp"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_ho1s0"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_j0mig"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6ytv"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_ewmv0"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_gl7b8"]
+font_size = 30
+
 [node name="option" type="Node2D"]
 script = ExtResource("1_14su1")
 
@@ -18,57 +36,64 @@ offset_bottom = 640.0
 color = Color(0.0605303, 0.0605303, 0.0605303, 1)
 
 [node name="title" type="Label" parent="."]
-offset_left = 464.0
-offset_top = 152.0
-offset_right = 686.0
-offset_bottom = 289.0
+offset_left = 456.0
+offset_top = 112.0
+offset_right = 700.0
+offset_bottom = 249.0
 text = "PING"
 label_settings = SubResource("LabelSettings_3hl6l")
 
 [node name="finishMod" type="Label" parent="."]
-offset_left = 696.0
-offset_top = 320.0
-offset_right = 781.0
-offset_bottom = 343.0
+offset_left = 704.0
+offset_top = 304.0
+offset_right = 837.0
+offset_bottom = 339.0
 text = "Finish mod"
+label_settings = SubResource("LabelSettings_vlqbp")
 
 [node name="mapMod" type="Label" parent="."]
-offset_left = 864.0
-offset_top = 320.0
-offset_right = 969.0
-offset_bottom = 343.0
+offset_left = 888.0
+offset_top = 304.0
+offset_right = 1053.0
+offset_bottom = 339.0
 text = "map modifier
 "
+label_settings = SubResource("LabelSettings_ho1s0")
 
 [node name="goal" type="Label" parent="." groups=["goalControl"]]
-offset_left = 160.0
-offset_top = 368.0
-offset_right = 200.0
-offset_bottom = 391.0
+offset_left = 112.0
+offset_top = 352.0
+offset_right = 174.0
+offset_bottom = 387.0
 text = "Goal:"
+label_settings = SubResource("LabelSettings_j0mig")
 
 [node name="Ngoal" type="Label" parent="." groups=["goalControl"]]
-offset_left = 168.0
+offset_left = 128.0
 offset_top = 400.0
-offset_right = 208.0
-offset_bottom = 423.0
+offset_right = 184.0
+offset_bottom = 442.0
 text = "10"
+label_settings = SubResource("LabelSettings_l6ytv")
+horizontal_alignment = 1
 
 [node name="Timer" type="Label" parent="." groups=["timerControl"]]
-offset_left = 336.0
-offset_top = 368.0
-offset_right = 386.0
-offset_bottom = 391.0
+offset_left = 304.0
+offset_top = 352.0
+offset_right = 381.0
+offset_bottom = 387.0
 text = "Timer:
 "
+label_settings = SubResource("LabelSettings_ewmv0")
 
 [node name="intTimer" type="Label" parent="." groups=["timerControl"]]
 offset_left = 320.0
-offset_top = 392.0
+offset_top = 400.0
 offset_right = 392.0
-offset_bottom = 424.0
+offset_bottom = 442.0
 text = "60
 "
+label_settings = SubResource("LabelSettings_gl7b8")
 horizontal_alignment = 1
 
 [node name="menuMenu" parent="." instance=ExtResource("2_rt1fo")]
@@ -79,15 +104,15 @@ orientation = "h"
 layout_mode = 1
 
 [node name="btn_plus" parent="menuMenu/goal" instance=ExtResource("4_77x3r")]
-position = Vector2(232, 392)
+position = Vector2(208, 392)
 label = "plus"
 
 [node name="btn_minus" parent="menuMenu/goal" instance=ExtResource("4_77x3r")]
-position = Vector2(232, 440)
+position = Vector2(208, 440)
 label = "minus"
 
 [node name="btn_reset" parent="menuMenu/goal" instance=ExtResource("4_77x3r")]
-position = Vector2(184, 472)
+position = Vector2(160, 472)
 label = "reset"
 
 [node name="timer" parent="menuMenu" instance=ExtResource("3_igt7r")]
@@ -121,15 +146,15 @@ layout_mode = 1
 checkbox = true
 
 [node name="btn_tng" parent="menuMenu/finishModMenu" instance=ExtResource("4_77x3r")]
-position = Vector2(736, 384)
+position = Vector2(768, 384)
 label = "tng"
 
 [node name="btn_timer" parent="menuMenu/finishModMenu" instance=ExtResource("4_77x3r")]
-position = Vector2(736, 448)
+position = Vector2(768, 448)
 label = "timer"
 
 [node name="btn_goal" parent="menuMenu/finishModMenu" instance=ExtResource("4_77x3r")]
-position = Vector2(736, 512)
+position = Vector2(768, 512)
 label = "goal"
 
 [node name="mapModifierMenu" parent="menuMenu" instance=ExtResource("3_igt7r")]
@@ -137,15 +162,15 @@ layout_mode = 1
 checkbox = true
 
 [node name="btn_none" parent="menuMenu/mapModifierMenu" instance=ExtResource("4_77x3r")]
-position = Vector2(920, 384)
+position = Vector2(968, 384)
 label = "none"
 
 [node name="btn_separator" parent="menuMenu/mapModifierMenu" instance=ExtResource("4_77x3r")]
-position = Vector2(920, 448)
+position = Vector2(968, 448)
 label = "separator"
 
 [node name="btn_zone" parent="menuMenu/mapModifierMenu" instance=ExtResource("4_77x3r")]
-position = Vector2(920, 512)
+position = Vector2(968, 512)
 label = "zone"
 
 [node name="transition" parent="." instance=ExtResource("5_51q3p")]

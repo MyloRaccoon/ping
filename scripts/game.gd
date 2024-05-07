@@ -52,12 +52,17 @@ func _process(_delta):
 	else:
 		$Timers/firstTimerLB.text = str(int($Timers/firstTimer.time_left))
 	
+	if int($Timers/Timer.time_left) <= 3:
+		$Timers/timerLB.label_settings.set_font_color(Color(.68, .39, 0))
+	else:
+		$Timers/timerLB.label_settings.set_font_color(Color(1, 1, 1))
 	
 	if pausing:
 		$Timers/timerLB.text = str(int(pause_time_left))
 	else:
 		$Timers/timerLB.text = str(int($Timers/Timer.time_left))
 		if prolong:
+			$Timers/timerLB.label_settings.set_font_color(Color(1, 1, 1))
 			$Timers/timerLB.text = "Prolongation !"
 	$pts1.text = str(pts1)
 	$pts2.text = str(pts2)
