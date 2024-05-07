@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyidl70ijlea4"]
+[gd_scene load_steps=6 format=3 uid="uid://cyidl70ijlea4"]
 
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_47jgb"]
 [ext_resource type="Texture2D" uid="uid://cmpevm4sknu3e" path="res://assets/ball.png" id="1_eatb7"]
 [ext_resource type="Texture2D" uid="uid://c7bi3y2plqly4" path="res://assets/light.png" id="2_xbr5i"]
 
@@ -14,6 +15,7 @@ collision_layer = 4
 collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_676rp")
 gravity_scale = 0.0
+script = ExtResource("1_47jgb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -26,3 +28,8 @@ shape = SubResource("CircleShape2D_n7jay")
 position = Vector2(3, 3)
 scale = Vector2(1.012, 1.012)
 texture = ExtResource("2_xbr5i")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

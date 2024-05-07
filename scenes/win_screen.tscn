@@ -14,9 +14,9 @@ offset_bottom = 640.0
 color = Color(0.0605303, 0.0605303, 0.0605303, 1)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 168.0
 offset_top = 248.0
-offset_right = 944.0
+offset_right = 1152.0
 offset_bottom = 385.0
 text = "PLAYER 1 WON !"
 label_settings = SubResource("LabelSettings_inydp")
+horizontal_alignment = 1

@@ -16,14 +16,18 @@ var pausing = false
 var pause_time_left
 var stock_ball_velocity
 
-func new_ball(ball_pos, p1_pos, p2_pos):
+func new_ball(ball_pos, p1_pos = $players/p1SpawnPoint.position, p2_pos = $players/p2SpawnPoint.position, p3_pos = $players/p3SpawnPoint.position, p4_pos = $players/p4SpawnPoint.position):
 	$players/Player.position = p1_pos
 	$players/Player2.position = p2_pos
+	$players/Player3.position = p3_pos
+	$players/Player4.position = p4_pos
 	ball = ball_tscn.instantiate()
 	ball.position = ball_pos
 	call_deferred("add_child", ball)
 
 func _ready():
+	$pts1.label_settings.set_font_color(global.blue_team_color)
+	$pts2.label_settings.set_font_color(global.red_team_color)
 	global.playing = false
 	$PauseMenu/menu.activate(false)
 	$Timers/firstTimer.start()
@@ -77,7 +81,7 @@ func _on_goal_1_body_entered(body):
 				call_deferred("win", "2")
 			else:
 				ball.queue_free()
-				new_ball($p1BallSpawnPoint.position, $players/p1SpawnPoint.position, $players/p2SpawnPoint.position)
+				new_ball($p1BallSpawnPoint.position)
 		
 func _on_goal_2_body_entered(body):
 	if body in get_tree().get_nodes_in_group("ball"):
@@ -89,7 +93,7 @@ func _on_goal_2_body_entered(body):
 				call_deferred("win", "1")
 			else:
 				ball.queue_free()
-				new_ball($p2BallSpawnPoint.position, $players/p1SpawnPoint.position, $players/p2SpawnPoint.position)
+				new_ball($p2BallSpawnPoint.position)
 
 func win(winner):
 	global.winner = winner
@@ -114,7 +118,7 @@ func _on_first_timer_timeout():
 	$pts2.show()
 	$Timers/firstTimerLB.hide()
 	global.playing = true
-	new_ball($middleBallSpawnPoint.position, $players/p1SpawnPoint.position, $players/p2SpawnPoint.position)
+	new_ball($middleBallSpawnPoint.position)
 
 func pause():
 	pause_time_left = $Timers/Timer.time_left

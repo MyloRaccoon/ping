@@ -22,7 +22,8 @@ func _process(_delta):
 
 func _on_play_pressed(btn):
 	match btn:
-		"play": $transition.exit()
+		"play": $transition.exit("game")
+		"players": $transition.exit("players")
 		"quit": get_tree().quit(0)
 
 
@@ -66,6 +67,7 @@ func _on_map_modifier_menu_pressed(btn):
 	global.map = btn
 
 
-func _on_transition_exited(_msg):
-	print(true)
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+func _on_transition_exited(msg):
+	match msg:
+		"game": get_tree().change_scene_to_file("res://scenes/game.tscn")
+		"players": get_tree().change_scene_to_file("res://scenes/player_screen.tscn")

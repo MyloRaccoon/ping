@@ -6,10 +6,21 @@ extends CharacterBody2D
 var speed
 
 func _ready():
-	$Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
+	if global.players[int(index)-1]:
+		show()
+		$CollisionPolygon2D.disabled = false
+		$Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
+		if global.get_n_player_ready() > 2:
+			if index in ["1", "3"]:
+				$PointLight2D.color = global.blue_team_color
+			else:
+				$PointLight2D.color = global.red_team_color
+	else:
+		hide()
+		$CollisionPolygon2D.disabled = true
 
 func _physics_process(_delta):
-	if global.playing:
+	if global.playing and global.players[int(index)-1]:
 		if Input.is_action_pressed('focus'+index):
 			speed = int(base_speed/3.0)
 		else:

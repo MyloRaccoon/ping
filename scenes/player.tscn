@@ -19,6 +19,6 @@ texture = ExtResource("2_06yk0")
 polygon = PackedVector2Array(-32, -64, 32, -64, 64, -32, 64, 32, 32, 64, -32, 64, -64, 32, -64, -32)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(3, 3)
-scale = Vector2(1.012, 1.012)
+scale = Vector2(0.512, 0.512)
+energy = 5.0
 texture = ExtResource("2_gfjxq")

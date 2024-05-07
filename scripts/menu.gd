@@ -32,15 +32,15 @@ func set_orientation(o):
 		indexM_btn = "ui_left"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _input(event):
 	if active and N_button > 0:
-		if Input.is_action_just_pressed(indexM_btn):
+		if event.is_action_pressed(indexM_btn):
 			index -= 1
 			on_hover()
-		elif Input.is_action_just_pressed(indexP_btn):
+		elif event.is_action_pressed(indexP_btn):
 			index += 1
 			on_hover()
-		if Input.is_action_just_pressed("ui_accept"):
+		if event.is_action_pressed("ui_accept"):
 			var btn = get_children()[index]
 			if checkbox:
 				select(btn)

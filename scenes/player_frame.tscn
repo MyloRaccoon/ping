@@ -11,6 +11,12 @@ font_color = Color(0.509804, 0.509804, 0.509804, 1)
 script = ExtResource("1_ocmm7")
 index = 1
 
+[node name="outline" type="ColorRect" parent="."]
+offset_left = -72.0
+offset_top = -88.0
+offset_right = 72.0
+offset_bottom = 104.0
+
 [node name="bg" type="ColorRect" parent="."]
 offset_left = -64.0
 offset_top = -80.0

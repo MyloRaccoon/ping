@@ -12,26 +12,36 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _input(event):
 	if active:
-		if Input.is_action_just_pressed("right" + str(index)) and not is_ready:
+		if event.is_action_pressed("right" + str(index)) and not is_ready:
 			global.player_skin[int(index)-1] += 1
 			if global.player_skin[int(index)-1] > len(global.skins)-1:
 				global.player_skin[int(index)-1] = 0
 			update_skin()
-		if Input.is_action_just_pressed("left" + str(index)) and not is_ready:
+		if event.is_action_pressed("left" + str(index)) and not is_ready:
 			global.player_skin[int(index)-1] -= 1
 			if global.player_skin[int(index)-1] < 0:
 				global.player_skin[int(index)-1] = len(global.skins) -1
 			update_skin()
-		if Input.is_action_just_pressed("focus" + str(index)) and not global.color_taken(global.player_skin[index-1], index-1):
-			switch_ready()
+		if event.is_action_pressed("focus" + str(index)) and not global.color_taken(global.player_skin[index-1], index-1):
+			set_ready(!is_ready)
+
+func _process(_delta):
+	if global.n_frame_active > 2:
+		$outline.show()
+		if index in [1,3]:
+			$outline.color = global.blue_team_color
+		else:
+			$outline.color = global.red_team_color
+	else:
+		$outline.hide()
 
 func update_skin():
 	$Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
 
-func switch_ready():
-	is_ready = !is_ready
+func set_ready(boolean):
+	is_ready = boolean
 	global.players[index-1] = is_ready
 	if is_ready:
 		$lbl_ready.label_settings.set_font_color(Color("#FFFFFF"))
@@ -45,4 +55,4 @@ func switch_ready():
 func activate():
 	active = !active
 	if (not active) and is_ready:
-		switch_ready()
+		set_ready(false)

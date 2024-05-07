@@ -9,11 +9,11 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_8j51r"]
 font_size = 500
-font_color = Color(0.270588, 0.388235, 0.917647, 0.929412)
+font_color = Color(0.27451, 0.392157, 0.921569, 0.929412)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ggfhb"]
 font_size = 500
-font_color = Color(0.819608, 0.176471, 0.137255, 1)
+font_color = Color(0.823529, 0.176471, 0.137255, 1)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dsfr3"]
 a = Vector2(-8, -440)
@@ -204,11 +204,29 @@ collision_layer = 6
 collision_mask = 6
 index = "2"
 
+[node name="Player3" parent="players" instance=ExtResource("3_10dy2")]
+position = Vector2(256, 384)
+collision_layer = 5
+collision_mask = 5
+index = "3"
+
+[node name="Player4" parent="players" instance=ExtResource("3_10dy2")]
+position = Vector2(896, 256)
+collision_layer = 5
+collision_mask = 5
+index = "4"
+
 [node name="p1SpawnPoint" type="Marker2D" parent="players"]
 position = Vector2(256, 256)
 
 [node name="p2SpawnPoint" type="Marker2D" parent="players"]
 position = Vector2(896, 384)
+
+[node name="p3SpawnPoint" type="Marker2D" parent="players"]
+position = Vector2(256, 384)
+
+[node name="p4SpawnPoint" type="Marker2D" parent="players"]
+position = Vector2(896, 256)
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -271,9 +289,7 @@ label_settings = SubResource("LabelSettings_pcg6r")
 horizontal_alignment = 1
 
 [node name="transition" parent="." instance=ExtResource("6_1h45d")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 320)
+visible = false
 
 [connection signal="body_entered" from="goal1" to="." method="_on_goal_1_body_entered"]
 [connection signal="body_entered" from="goal2" to="." method="_on_goal_2_body_entered"]

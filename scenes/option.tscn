@@ -134,11 +134,15 @@ label = "reset"
 layout_mode = 1
 
 [node name="btn_play" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
-position = Vector2(576, 416)
+position = Vector2(576, 384)
 label = "play"
 
+[node name="btn_players" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
+position = Vector2(576, 448)
+label = "players"
+
 [node name="btn_quit" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
-position = Vector2(576, 528)
+position = Vector2(576, 512)
 label = "quit"
 
 [node name="finishModMenu" parent="menuMenu" instance=ExtResource("3_igt7r")]

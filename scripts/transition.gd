@@ -19,16 +19,20 @@ func _process(_delta):
 		$exit.position += Vector2(-64, 0)
 
 func enter():
+	show()
 	entering = true
 	
 func exit(msg = ""):
+	show()
 	exiting = true
 	exit_msg = msg
 
 func _on_enter_visible_on_screen_notifier_2d_screen_exited():
+	hide()
 	entering = false
 	emit_signal("entered")
 
 func _on_exit_visible_on_screen_notifier_2d_screen_entered():
+	hide()
 	exiting = false
 	emit_signal("exited", exit_msg)

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddihc202bjktt"]
+[gd_scene load_steps=4 format=3 uid="uid://ddihc202bjktt"]
 
 [ext_resource type="Script" path="res://scripts/player_screen.gd" id="1_a8ysq"]
 [ext_resource type="PackedScene" uid="uid://k3ag4rvktg6v" path="res://scenes/player_frame.tscn" id="1_xfjc1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2tvr3"]
+font_size = 50
 
 [node name="player_screen" type="Node2D"]
 script = ExtResource("1_a8ysq")
@@ -29,3 +32,12 @@ index = 3
 visible = false
 position = Vector2(960, 144)
 index = 4
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_top = 424.0
+offset_right = 1152.0
+offset_bottom = 493.0
+text = "READY !"
+label_settings = SubResource("LabelSettings_2tvr3")
+horizontal_alignment = 1
