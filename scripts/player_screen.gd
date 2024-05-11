@@ -14,7 +14,7 @@ func _input(event):
 	elif event.is_action_pressed("join4"): player_join(4)
 	
 	elif event.is_action_pressed("ui_accept") and everyone_ready:
-		get_tree().change_scene_to_file("res://scenes/option.tscn")
+		$transition.exit()
 
 func _ready():
 	global.players = [false, false, false, false]
@@ -24,10 +24,6 @@ func _ready():
 func player_join(p):
 	var player_frame = get_node("player_frame" + str(p))
 	player_frame.activate()
-	if player_frame.active:
-		player_frame.show()
-	else:
-		player_frame.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -41,11 +37,11 @@ func _process(_delta):
 
 	if np in [2, 4] and nf == np and indexs != [0,2] and indexs != [1,3]:
 		everyone_ready = true
-		$Label.show()
+		$ready.show()
 		global.n_player = np
 	else:
 		everyone_ready = false
-		$Label.hide()
+		$ready.hide()
 	global.n_frame_active = get_n_frames_active()
 
 func get_n_frames_active():
@@ -54,3 +50,7 @@ func get_n_frames_active():
 		if frame.active:
 			n += 1
 	return n
+
+
+func _on_transition_exited(_msg):
+	get_tree().change_scene_to_file("res://scenes/option.tscn")

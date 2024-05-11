@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	global.scene_after_control = "res://scenes/option.tscn"
 	match global.map:
 		"none": $menuMenu/mapModifierMenu.select($menuMenu/mapModifierMenu/btn_none)
 		"separator": $menuMenu/mapModifierMenu.select($menuMenu/mapModifierMenu/btn_separator)
@@ -24,6 +25,7 @@ func _on_play_pressed(btn):
 	match btn:
 		"play": $transition.exit("game")
 		"players": $transition.exit("players")
+		"controls": $transition.exit("controls")
 		"quit": get_tree().quit(0)
 
 
@@ -71,3 +73,4 @@ func _on_transition_exited(msg):
 	match msg:
 		"game": get_tree().change_scene_to_file("res://scenes/game.tscn")
 		"players": get_tree().change_scene_to_file("res://scenes/player_screen.tscn")
+		"controls": get_tree().change_scene_to_file("res://scenes/controls_screen.tscn")

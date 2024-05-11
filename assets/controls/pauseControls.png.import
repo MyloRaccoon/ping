@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmpevm4sknu3e"
-path="res://.godot/imported/ball.png-ca93c4f2e7b7f8325cbd933673092ff4.ctex"
+uid="uid://blqfhf0tx2xft"
+path="res://.godot/imported/pauseControls.png-e6c9174e9897c320fa1bdeee6e38e6d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ball.png"
-dest_files=["res://.godot/imported/ball.png-ca93c4f2e7b7f8325cbd933673092ff4.ctex"]
+source_file="res://assets/controls/pauseControls.png"
+dest_files=["res://.godot/imported/pauseControls.png-e6c9174e9897c320fa1bdeee6e38e6d5.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2o8srpfhgwdw"
-path="res://.godot/imported/goalZone.png-84a69aaa706edc7bf51ddc78a83f9701.ctex"
+uid="uid://cmpevm4sknu3e"
+path="res://.godot/imported/ball.png-9214e5f60936f0c5b8de0763732dbe29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/goalZone.png"
-dest_files=["res://.godot/imported/goalZone.png-84a69aaa706edc7bf51ddc78a83f9701.ctex"]
+source_file="res://assets/inGame/ball.png"
+dest_files=["res://.godot/imported/ball.png-9214e5f60936f0c5b8de0763732dbe29.ctex"]
 
 [params]
 

@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdho5ettk0iv4"]
+
+[ext_resource type="Script" path="res://scripts/controls_screen.gd" id="1_p8tq7"]
+[ext_resource type="PackedScene" uid="uid://cpu6f4r417uhj" path="res://scenes/transition.tscn" id="2_jfq2r"]
+[ext_resource type="Texture2D" uid="uid://bt861apqp14vo" path="res://assets/controls/globalControls.png" id="3_84m1v"]
+[ext_resource type="Texture2D" uid="uid://cxla4b5001mbh" path="res://assets/controls/playersControls.png" id="4_t1qbq"]
+[ext_resource type="Texture2D" uid="uid://c5xsnugenhoie" path="res://assets/controls/okControls.png" id="5_qnr0o"]
+[ext_resource type="Texture2D" uid="uid://blqfhf0tx2xft" path="res://assets/controls/pauseControls.png" id="6_wjikv"]
+
+[node name="controls_screen" type="Node2D"]
+script = ExtResource("1_p8tq7")
+
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_top = 584.0
+offset_right = 1152.0
+offset_bottom = 607.0
+text = "press ok to continue
+"
+horizontal_alignment = 1
+
+[node name="transition" parent="." instance=ExtResource("2_jfq2r")]
+visible = false
+
+[node name="GlobalControls" type="Sprite2D" parent="."]
+position = Vector2(401.23, 395.688)
+scale = Vector2(0.237459, 0.237459)
+texture = ExtResource("3_84m1v")
+
+[node name="PlayersControls" type="Sprite2D" parent="."]
+position = Vector2(576, 160)
+scale = Vector2(0.278846, 0.278846)
+texture = ExtResource("4_t1qbq")
+
+[node name="OkControls" type="Sprite2D" parent="."]
+position = Vector2(777.23, 347.688)
+scale = Vector2(0.248691, 0.248691)
+texture = ExtResource("5_qnr0o")
+
+[node name="PauseControls" type="Sprite2D" parent="."]
+position = Vector2(769.23, 467.688)
+scale = Vector2(0.260471, 0.260471)
+texture = ExtResource("6_wjikv")
+
+[connection signal="exited" from="transition" to="." method="_on_transition_exited"]

@@ -4,10 +4,12 @@ const blue_team_color = Color("#4664eb")
 const red_team_color = Color("#d22d23")
 const skins = [Color(1, 1, 1), Color(0, 0, 0), Color(1, 0, 0), Color(0, 1, 0), Color(0, 0, 1), Color(1, 1, 0), Color(1, 0, 1), Color(0, 1, 1)]
 var player_skin = [4, 2, 0, 1]
-var players = [false, false, false, false]
+var players = [true, true, false, false]
 
 var n_player = 2
 var n_frame_active
+
+var scene_after_control = "res://scenes/player_screen.tscn"
 
 func get_n_player_ready():
 	var n = 0
@@ -44,10 +46,3 @@ var playing : bool = false
 var last_ball_velocity
 
 var winner
-
-func create_button(x, y, label):
-	var btn = preload("res://scenes/button.tscn").instantiate()
-	btn.position.x = x
-	btn.position.y = y
-	btn.label = label
-	return btn

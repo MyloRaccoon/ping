@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://b6mt6o3s6l44i"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_r2cec"]
-[ext_resource type="Texture2D" uid="uid://b2o8srpfhgwdw" path="res://assets/goalZone.png" id="2_7r47u"]
+[ext_resource type="Texture2D" uid="uid://b2o8srpfhgwdw" path="res://assets/inGame/goalZone.png" id="2_7r47u"]
 [ext_resource type="PackedScene" uid="uid://b0tvpet4qy7kh" path="res://scenes/player.tscn" id="3_10dy2"]
 [ext_resource type="PackedScene" uid="uid://np1k8omx8hjg" path="res://scenes/menu.tscn" id="4_30k1x"]
 [ext_resource type="PackedScene" uid="uid://b60swerlqj70r" path="res://scenes/button.tscn" id="5_6syb2"]

@@ -134,15 +134,19 @@ label = "reset"
 layout_mode = 1
 
 [node name="btn_play" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
-position = Vector2(576, 384)
+position = Vector2(576, 344)
 label = "play"
 
+[node name="btn_controls" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
+position = Vector2(576, 408)
+label = "controls"
+
 [node name="btn_players" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
-position = Vector2(576, 448)
+position = Vector2(576, 472)
 label = "players"
 
 [node name="btn_quit" parent="menuMenu/play" instance=ExtResource("4_77x3r")]
-position = Vector2(576, 512)
+position = Vector2(576, 536)
 label = "quit"
 
 [node name="finishModMenu" parent="menuMenu" instance=ExtResource("3_igt7r")]
@@ -178,6 +182,7 @@ position = Vector2(968, 512)
 label = "zone"
 
 [node name="transition" parent="." instance=ExtResource("5_51q3p")]
+visible = false
 
 [connection signal="pressed" from="menuMenu/goal" to="." method="_on_goal_pressed"]
 [connection signal="pressed" from="menuMenu/timer" to="." method="_on_timer_pressed"]

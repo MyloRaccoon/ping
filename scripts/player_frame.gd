@@ -7,9 +7,14 @@ var active = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$name.text = "Player " + str(index)
-	$Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
-
+	$active/name.text = "Player " + str(index)
+	$inactive/name.text = "Player " + str(index)
+	$active/Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
+	match index:
+		1: $inactive/key.text = "E"
+		2: $inactive/key.text = "1"
+		3: $inactive/key.text = "U"
+		4: $inactive/key.text = "$"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event):
@@ -29,30 +34,36 @@ func _input(event):
 
 func _process(_delta):
 	if global.n_frame_active > 2:
-		$outline.show()
+		$active/outline.show()
 		if index in [1,3]:
-			$outline.color = global.blue_team_color
+			$active/outline.color = global.blue_team_color
 		else:
-			$outline.color = global.red_team_color
+			$active/outline.color = global.red_team_color
 	else:
-		$outline.hide()
+		$active/outline.hide()
 
 func update_skin():
-	$Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
+	$active/Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
 
 func set_ready(boolean):
 	is_ready = boolean
 	global.players[index-1] = is_ready
 	if is_ready:
-		$lbl_ready.label_settings.set_font_color(Color("#FFFFFF"))
-		$left.hide()
-		$right.hide()
+		$active/lbl_ready.label_settings.set_font_color(Color("#FFFFFF"))
+		$active/left.hide()
+		$active/right.hide()
 	else:
-		$lbl_ready.label_settings.set_font_color(Color("#828282"))
-		$left.show()
-		$right.show()
+		$active/lbl_ready.label_settings.set_font_color(Color("#828282"))
+		$active/left.show()
+		$active/right.show()
 
 func activate():
 	active = !active
-	if (not active) and is_ready:
-		set_ready(false)
+	if active:
+		$active.show()
+		$inactive.hide()
+	else:
+		$active.hide()
+		$inactive.show()
+		if is_ready:
+			set_ready(false)
