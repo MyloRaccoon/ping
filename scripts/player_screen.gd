@@ -13,7 +13,7 @@ func _input(event):
 	elif event.is_action_pressed("join3"): player_join(3)
 	elif event.is_action_pressed("join4"): player_join(4)
 	
-	elif event.is_action_pressed("ui_accept") and everyone_ready:
+	elif event.is_action_pressed("start") and everyone_ready:
 		$transition.exit()
 
 func _ready():

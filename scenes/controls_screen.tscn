@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdho5ettk0iv4"]
+[gd_scene load_steps=9 format=3 uid="uid://cdho5ettk0iv4"]
 
 [ext_resource type="Script" path="res://scripts/controls_screen.gd" id="1_p8tq7"]
 [ext_resource type="PackedScene" uid="uid://cpu6f4r417uhj" path="res://scenes/transition.tscn" id="2_jfq2r"]
 [ext_resource type="Texture2D" uid="uid://bt861apqp14vo" path="res://assets/controls/globalControls.png" id="3_84m1v"]
-[ext_resource type="Texture2D" uid="uid://cxla4b5001mbh" path="res://assets/controls/playersControls.png" id="4_t1qbq"]
 [ext_resource type="Texture2D" uid="uid://c5xsnugenhoie" path="res://assets/controls/okControls.png" id="5_qnr0o"]
 [ext_resource type="Texture2D" uid="uid://blqfhf0tx2xft" path="res://assets/controls/pauseControls.png" id="6_wjikv"]
+[ext_resource type="Texture2D" uid="uid://dfbniulwme8ew" path="res://assets/controls/controlPlayer.png" id="6_xpjqe"]
+[ext_resource type="Texture2D" uid="uid://bohg2brfwvg50" path="res://assets/controls/manetteControl.png" id="7_b5y4w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0uanh"]
+font_size = 30
 
 [node name="controls_screen" type="Node2D"]
 script = ExtResource("1_p8tq7")
@@ -27,23 +31,36 @@ horizontal_alignment = 1
 visible = false
 
 [node name="GlobalControls" type="Sprite2D" parent="."]
-position = Vector2(401.23, 395.688)
-scale = Vector2(0.237459, 0.237459)
+position = Vector2(296, 136)
+scale = Vector2(0.224573, 0.224573)
 texture = ExtResource("3_84m1v")
 
-[node name="PlayersControls" type="Sprite2D" parent="."]
-position = Vector2(576, 160)
-scale = Vector2(0.278846, 0.278846)
-texture = ExtResource("4_t1qbq")
-
 [node name="OkControls" type="Sprite2D" parent="."]
-position = Vector2(777.23, 347.688)
+position = Vector2(854.365, 367.5)
 scale = Vector2(0.248691, 0.248691)
 texture = ExtResource("5_qnr0o")
 
 [node name="PauseControls" type="Sprite2D" parent="."]
-position = Vector2(769.23, 467.688)
+position = Vector2(846.365, 487.5)
 scale = Vector2(0.260471, 0.260471)
 texture = ExtResource("6_wjikv")
+
+[node name="ControlPlayer" type="Sprite2D" parent="."]
+position = Vector2(328, 424)
+scale = Vector2(0.223254, 0.223254)
+texture = ExtResource("6_xpjqe")
+
+[node name="ManetteControl" type="Sprite2D" parent="."]
+position = Vector2(832, 168)
+scale = Vector2(0.221181, 0.221181)
+texture = ExtResource("7_b5y4w")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 520.0
+offset_top = 16.0
+offset_right = 642.0
+offset_bottom = 58.0
+text = "Controls"
+label_settings = SubResource("LabelSettings_0uanh")
 
 [connection signal="exited" from="transition" to="." method="_on_transition_exited"]

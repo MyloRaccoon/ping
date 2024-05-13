@@ -17,6 +17,8 @@ var pause_time_left
 var stock_ball_velocity
 
 func new_ball(ball_pos, p1_pos = $players/p1SpawnPoint.position, p2_pos = $players/p2SpawnPoint.position, p3_pos = $players/p3SpawnPoint.position, p4_pos = $players/p4SpawnPoint.position):
+	if ball != null:
+		ball.queue_free()
 	$players/Player.position = p1_pos
 	$players/Player2.position = p2_pos
 	$players/Player3.position = p3_pos
@@ -80,7 +82,6 @@ func _on_goal_1_body_entered(body):
 			if pts2 == global.goal and global.goal_active:
 				call_deferred("win", "2")
 			else:
-				ball.queue_free()
 				new_ball($p1BallSpawnPoint.position)
 		
 func _on_goal_2_body_entered(body):
@@ -92,7 +93,6 @@ func _on_goal_2_body_entered(body):
 			if pts1 == global.goal and global.goal_active:
 				call_deferred("win", "1")
 			else:
-				ball.queue_free()
 				new_ball($p2BallSpawnPoint.position)
 
 func win(winner):

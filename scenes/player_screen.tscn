@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddihc202bjktt"]
+[gd_scene load_steps=9 format=3 uid="uid://ddihc202bjktt"]
 
 [ext_resource type="Script" path="res://scripts/player_screen.gd" id="1_a8ysq"]
 [ext_resource type="PackedScene" uid="uid://k3ag4rvktg6v" path="res://scenes/player_frame.tscn" id="1_xfjc1"]
 [ext_resource type="Texture2D" uid="uid://bkje8tgaxy5it" path="res://assets/controls/playerScreenControls.png" id="3_guv0l"]
 [ext_resource type="PackedScene" uid="uid://cpu6f4r417uhj" path="res://scenes/transition.tscn" id="4_2ym2x"]
+[ext_resource type="Texture2D" uid="uid://c2al6b1lg0om8" path="res://assets/controls/manettePlayerScreenControls.png" id="5_rmtwn"]
+[ext_resource type="Texture2D" uid="uid://c5xsnugenhoie" path="res://assets/controls/okControls.png" id="6_1u0od"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2tvr3"]
 font_size = 50
 outline_color = Color(0.537255, 0.537255, 0.537255, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lutxe"]
+font_size = 30
 
 [node name="player_screen" type="Node2D"]
 script = ExtResource("1_a8ysq")
@@ -33,7 +38,6 @@ position = Vector2(960, 144)
 index = 4
 
 [node name="ready" type="ColorRect" parent="."]
-visible = false
 offset_top = 288.0
 offset_right = 1152.0
 offset_bottom = 344.0
@@ -44,7 +48,7 @@ layout_mode = 0
 offset_top = -8.0
 offset_right = 1152.0
 offset_bottom = 61.0
-text = "PRESS ENTER WHEN READY !"
+text = "PRESS START WHEN READY !"
 label_settings = SubResource("LabelSettings_2tvr3")
 horizontal_alignment = 1
 
@@ -62,19 +66,44 @@ offset_right = 1152.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
 
 [node name="PlayerScreenControls" type="Sprite2D" parent="."]
-position = Vector2(576, 488)
+position = Vector2(952, 480)
 scale = Vector2(0.201493, 0.201493)
 texture = ExtResource("3_guv0l")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 776.0
-offset_top = 456.0
-offset_right = 1072.0
-offset_bottom = 520.0
+offset_top = 584.0
+offset_right = 1152.0
+offset_bottom = 648.0
 text = "You can only play with 2 or 4 players (1v1 or 2v2)"
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="transition" parent="." instance=ExtResource("4_2ym2x")]
 visible = false
+
+[node name="ManettePlayerScreenControls" type="Sprite2D" parent="."]
+position = Vector2(272, 472)
+scale = Vector2(0.196749, 0.196749)
+texture = ExtResource("5_rmtwn")
+
+[node name="OkControls" type="Sprite2D" parent="."]
+position = Vector2(704, 464)
+scale = Vector2(0.229058, 0.229058)
+texture = ExtResource("6_1u0od")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 664.0
+offset_top = 408.0
+offset_right = 744.0
+offset_bottom = 448.0
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 672.0
+offset_top = 408.0
+offset_right = 741.0
+offset_bottom = 450.0
+text = "start"
+label_settings = SubResource("LabelSettings_lutxe")
 
 [connection signal="exited" from="transition" to="." method="_on_transition_exited"]
