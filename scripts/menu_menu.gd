@@ -5,8 +5,16 @@ extends Control
 var indexP_btn
 var indexM_btn
 var index
-@onready var N_menu = get_children().size()
+@onready var menus = get_menus()
+@onready var N_menu = menus.size()
 var active : bool = true
+
+func get_menus():
+	var menus_list = []
+	for menu in get_children():
+		if menu in get_tree().get_nodes_in_group("menu"):
+			menus_list.append(menu)
+	return menus_list
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,23 +23,25 @@ func _ready():
 		if orientation == "v":
 			indexP_btn = "ui_down"
 			indexM_btn = "ui_up"
-			for menu in get_children():
+			for menu in menus:
 				menu.set_orientation("h")
 		elif orientation == "h":
 			indexP_btn = "ui_right"
 			indexM_btn = "ui_left"
-			for menu in get_children():
+			for menu in menus:
 				menu.set_orientation("v")
 		on_select()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _input(event):
 	if active and N_menu > 0:
-		if Input.is_action_just_pressed(indexM_btn):
+		if event.is_action_pressed(indexM_btn):
 			index -= 1
+			SelectSound.play()
 			on_select()
-		elif Input.is_action_just_pressed(indexP_btn):
+		elif event.is_action_pressed(indexP_btn):
 			index += 1
+			SelectSound.play()
 			on_select()
 
 func on_select():
@@ -39,9 +49,9 @@ func on_select():
 		index = 0
 	elif index < 0:
 		index = N_menu - 1
-	select(get_children()[index])
+	select(menus[index])
 
 func select(m):
-	for menu in get_children():
+	for menu in menus:
 		menu.activate(false)
 	m.activate(true)

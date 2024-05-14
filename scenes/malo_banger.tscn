@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://brg0q4ohfsrac"]
+
+[ext_resource type="AudioStream" uid="uid://debyatbdhno0m" path="res://assets/audio/malo_banger.mp3" id="1_oxx3b"]
+
+[node name="malo_banger" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_oxx3b")
+autoplay = true
+bus = &"music"

@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 global="*res://scripts/global.gd"
+MaloBanger="*res://scenes/malo_banger.tscn"
+OkSound="*res://scenes/sfx/ok_sound.tscn"
+SelectSound="*res://scenes/sfx/select_sound.tscn"
+GoalSound="*res://scenes/sfx/goal_sound.tscn"
+HitSound="*res://scenes/sfx/hit_sound.tscn"
 
 [display]
 

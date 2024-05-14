@@ -75,6 +75,7 @@ func _process(_delta):
 
 func _on_goal_1_body_entered(body):
 	if body in get_tree().get_nodes_in_group("ball"):
+		GoalSound.play()
 		if prolong:
 			call_deferred("win", "2")
 		else:
@@ -86,6 +87,7 @@ func _on_goal_1_body_entered(body):
 		
 func _on_goal_2_body_entered(body):
 	if body in get_tree().get_nodes_in_group("ball"):
+		GoalSound.play()
 		if prolong:
 			call_deferred("win", "1")
 		else:

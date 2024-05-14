@@ -8,19 +8,27 @@ signal pressed(btn)
 var indexP_btn
 var indexM_btn
 
-@onready var N_button = get_children().size()
+@onready var buttons = get_buttons()
+@onready var N_button = buttons.size()
 @onready var index = default
 var active : bool = true
+
+func get_buttons():
+	var buttons_list = []
+	for btn in get_children():
+		if btn in get_tree().get_nodes_in_group("btn"):
+			buttons_list.append(btn)
+	return buttons_list
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if N_button > 0:
-		for button in get_children():
+		for button in buttons:
 			button.checkbox = checkbox
 		set_orientation(orientation)
 		on_hover()
 		if checkbox:
-			select(get_children()[index])
+			select(buttons[index])
 
 func set_orientation(o):
 	orientation = o
@@ -36,12 +44,15 @@ func _input(event):
 	if active and N_button > 0:
 		if event.is_action_pressed(indexM_btn):
 			index -= 1
+			SelectSound.play()
 			on_hover()
 		elif event.is_action_pressed(indexP_btn):
 			index += 1
+			SelectSound.play()
 			on_hover()
 		if event.is_action_pressed("ui_accept"):
-			var btn = get_children()[index]
+			OkSound.play()
+			var btn = buttons[index]
 			if checkbox:
 				select(btn)
 			emit_signal("pressed", btn.label)
@@ -51,15 +62,15 @@ func on_hover():
 		index = 0
 	elif index < 0:
 		index = N_button - 1
-	hover(get_children()[index])
+	hover(buttons[index])
 
 func hover(btn):
-	for button in get_children():
+	for button in buttons:
 		button.hovered = false
 	btn.hovered = true
 
 func select(btn):
-	for button in get_children():
+	for button in buttons:
 		button.selected = false
 	btn.selected = true
 
@@ -68,15 +79,16 @@ func activate(boolean):
 	if boolean:
 		on_hover()
 	else:
-		for button in get_children():
+		for button in buttons:
 			button.hovered = false
 
 func add_button(btn):
 	add_child(btn)
-	N_button = get_children().size()
+	buttons.append(btn)
+	N_button = buttons.size()
 
 func remove_last_button():
-	get_children()[-1].queue_free()
-	N_button = get_children().size()
+	buttons.pop().queue_free()
+	N_button = buttons.size()
 	index = 0
 	on_hover()

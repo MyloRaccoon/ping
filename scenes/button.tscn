@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/button.gd" id="1_jh4i8"]
 
-[node name="button" type="Node2D"]
+[node name="button" type="Node2D" groups=["btn"]]
 position = Vector2(384, 264)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_jh4i8")

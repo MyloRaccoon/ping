@@ -23,10 +23,12 @@ func _process(_delta):
 
 func _on_play_pressed(btn):
 	match btn:
-		"play": $transition.exit("game")
+		"play": 
+			GoalSound.play()
+			$transition.exit("game")
 		"players": $transition.exit("players")
 		"controls": $transition.exit("controls")
-		"quit": get_tree().quit(0)
+		"quit": $transition.exit("quit")
 
 
 func _on_goal_pressed(btn):
@@ -74,3 +76,4 @@ func _on_transition_exited(msg):
 		"game": get_tree().change_scene_to_file("res://scenes/game.tscn")
 		"players": get_tree().change_scene_to_file("res://scenes/player_screen.tscn")
 		"controls": get_tree().change_scene_to_file("res://scenes/controls_screen.tscn")
+		"quit": get_tree().quit(0)

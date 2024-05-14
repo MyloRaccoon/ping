@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk3g1jlw7chjc"]
+
+[ext_resource type="AudioStream" uid="uid://bmr7ygqrr2iyf" path="res://assets/audio/goal.wav" id="1_ymo6u"]
+
+[node name="goal_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_ymo6u")

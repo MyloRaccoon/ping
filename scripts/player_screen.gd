@@ -14,6 +14,7 @@ func _input(event):
 	elif event.is_action_pressed("join4"): player_join(4)
 	
 	elif event.is_action_pressed("start") and everyone_ready:
+		GoalSound.play()
 		$transition.exit()
 
 func _ready():
@@ -22,6 +23,7 @@ func _ready():
 		frame.set_ready(false)
 
 func player_join(p):
+	OkSound.play()
 	var player_frame = get_node("player_frame" + str(p))
 	player_frame.activate()
 

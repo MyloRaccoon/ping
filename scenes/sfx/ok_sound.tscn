@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://llv350hem3sd"]
+
+[ext_resource type="AudioStream" uid="uid://br6dvcblh3a8q" path="res://assets/audio/ok.wav" id="1_540b1"]
+
+[node name="ok_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_540b1")
