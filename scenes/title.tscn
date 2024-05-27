@@ -31,3 +31,10 @@ offset_right = 649.0
 offset_bottom = 467.0
 text = "press enter"
 label_settings = SubResource("LabelSettings_w0twx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 600.0
+offset_right = 265.0
+offset_bottom = 623.0
+text = "press C to mute/unmute sounds"

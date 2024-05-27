@@ -4,5 +4,4 @@
 
 [node name="malo_banger" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_oxx3b")
-autoplay = true
 bus = &"music"

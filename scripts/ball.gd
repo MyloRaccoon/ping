@@ -4,8 +4,8 @@ var on_screen = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if not on_screen:
-		print(position)
+	print("linear_velocity : " + str(linear_velocity))
+	print("position : " + str(position))
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered():

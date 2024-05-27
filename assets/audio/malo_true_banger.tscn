@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj2q3haiuesnb"]
+
+[ext_resource type="AudioStream" uid="uid://b0cmt2cwljeid" path="res://assets/audio/looped.mp3" id="1_gnpmp"]
+
+[node name="malo_true_banger" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_gnpmp")

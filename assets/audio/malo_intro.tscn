@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjfgkghd4sbgq"]
+
+[ext_resource type="AudioStream" uid="uid://c1a1rfxih732c" path="res://assets/audio/intro_before_loop.mp3" id="1_0wtpl"]
+
+[node name="malo_intro" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_0wtpl")

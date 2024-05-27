@@ -83,6 +83,24 @@ position = Vector2(-1.19209e-06, -1.19209e-06)
 scale = Vector2(0.625, 0.625)
 texture = ExtResource("1_qcikh")
 
+[node name="cross" type="CanvasGroup" parent="active"]
+visible = false
+rotation = 0.785398
+
+[node name="ColorRect" type="ColorRect" parent="active/cross"]
+offset_left = -64.0
+offset_top = -4.0
+offset_right = 63.0
+offset_bottom = 4.0
+color = Color(0.54902, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="active/cross"]
+offset_left = -4.0
+offset_top = -64.0
+offset_right = 4.0
+offset_bottom = 63.0
+color = Color(0.54902, 0, 0, 1)
+
 [node name="inactive" type="Node2D" parent="."]
 
 [node name="bg" type="ColorRect" parent="inactive"]

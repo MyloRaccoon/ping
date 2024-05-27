@@ -19,17 +19,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event):
 	if active:
+		update_skin()
 		if event.is_action_pressed("right" + str(index)) and not is_ready:
 			global.player_skin[int(index)-1] += 1
 			if global.player_skin[int(index)-1] > len(global.skins)-1:
 				global.player_skin[int(index)-1] = 0
-			update_skin()
 			SelectSound.play()
 		if event.is_action_pressed("left" + str(index)) and not is_ready:
 			global.player_skin[int(index)-1] -= 1
 			if global.player_skin[int(index)-1] < 0:
 				global.player_skin[int(index)-1] = len(global.skins) -1
-			update_skin()
 			SelectSound.play()
 		if event.is_action_pressed("focus" + str(index)) and not global.color_taken(global.player_skin[index-1], index-1):
 			OkSound.play()
@@ -47,6 +46,10 @@ func _process(_delta):
 
 func update_skin():
 	$active/Sprite2D.modulate = global.skins[global.player_skin[int(index)-1]]
+	if global.color_taken(global.player_skin[index-1], index-1):
+		$active/cross.show()
+	else:
+		$active/cross.hide()
 
 func set_ready(boolean):
 	is_ready = boolean

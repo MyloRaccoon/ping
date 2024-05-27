@@ -3,9 +3,6 @@ extends Node2D
 var pts1 = 0
 var pts2 = 0
 
-var ball_tscn = preload("res://scenes/ball.tscn")
-var ball 
-
 var player1_in_ballZone = false
 var player2_in_ballZone = false
 
@@ -17,15 +14,13 @@ var pause_time_left
 var stock_ball_velocity
 
 func new_ball(ball_pos, p1_pos = $players/p1SpawnPoint.position, p2_pos = $players/p2SpawnPoint.position, p3_pos = $players/p3SpawnPoint.position, p4_pos = $players/p4SpawnPoint.position):
-	if ball != null:
-		ball.queue_free()
 	$players/Player.position = p1_pos
 	$players/Player2.position = p2_pos
 	$players/Player3.position = p3_pos
 	$players/Player4.position = p4_pos
-	ball = ball_tscn.instantiate()
-	ball.position = ball_pos
-	call_deferred("add_child", ball)
+	$ball.sleeping = true
+	$ball.position = ball_pos
+	$ball.sleeping = false
 
 func _ready():
 	$pts1.label_settings.set_font_color(global.blue_team_color)
@@ -45,7 +40,6 @@ func _ready():
 	$goal1/p1Zone/CollisionShape2D.disabled = !(global.map == "zone")
 	$goal2/p2Zone/CollisionShape2D.disabled = !(global.map == "zone")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 		if !pausing and global.playing:
@@ -83,7 +77,7 @@ func _on_goal_1_body_entered(body):
 			if pts2 == global.goal and global.goal_active:
 				call_deferred("win", "2")
 			else:
-				new_ball($p1BallSpawnPoint.position)
+				call_deferred("new_ball", $p1BallSpawnPoint.position)
 		
 func _on_goal_2_body_entered(body):
 	if body in get_tree().get_nodes_in_group("ball"):
@@ -95,7 +89,7 @@ func _on_goal_2_body_entered(body):
 			if pts1 == global.goal and global.goal_active:
 				call_deferred("win", "1")
 			else:
-				new_ball($p2BallSpawnPoint.position)
+				call_deferred("new_ball", $p2BallSpawnPoint.position)
 
 func win(winner):
 	global.winner = winner
@@ -124,20 +118,21 @@ func _on_first_timer_timeout():
 
 func pause():
 	pause_time_left = $Timers/Timer.time_left
-	stock_ball_velocity = ball.linear_velocity
+	stock_ball_velocity = $ball.linear_velocity
 	$Timers/Timer.stop()
 	pausing = true
 	$PauseMenu.show()
 	$PauseMenu/menu.activate(true)
 	global.playing = false
-	ball.linear_velocity = Vector2(0,0)
+	$ball.sleeping = true
 
 func resume():
 	$Timers/Timer.start(pause_time_left)
 	pausing = false
 	$PauseMenu.hide()
 	global.playing = true
-	ball.linear_velocity = stock_ball_velocity
+	$ball.sleeping = false
+	$ball.linear_velocity = stock_ball_velocity
 	$PauseMenu/menu.activate(false)
 
 func _on_menu_pressed(btn):
@@ -152,3 +147,5 @@ func _on_transition_exited(msg):
 	match msg:
 		"option": get_tree().change_scene_to_file("res://scenes/option.tscn")
 		"win": get_tree().change_scene_to_file("res://scenes/win_screen.tscn")
+
+

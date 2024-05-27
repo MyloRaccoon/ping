@@ -40,17 +40,17 @@ func set_orientation(o):
 		indexM_btn = "ui_left"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _input(event):
+func _process(_delta):
 	if active and N_button > 0:
-		if event.is_action_pressed(indexM_btn):
+		if Input.is_action_just_pressed(indexM_btn):
 			index -= 1
 			SelectSound.play()
 			on_hover()
-		elif event.is_action_pressed(indexP_btn):
+		elif Input.is_action_just_pressed(indexP_btn):
 			index += 1
 			SelectSound.play()
 			on_hover()
-		if event.is_action_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept"):
 			OkSound.play()
 			var btn = buttons[index]
 			if checkbox:

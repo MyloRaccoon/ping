@@ -33,13 +33,13 @@ func _ready():
 		on_select()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _input(event):
+func _process(_delta):
 	if active and N_menu > 0:
-		if event.is_action_pressed(indexM_btn):
+		if Input.is_action_just_pressed(indexM_btn):
 			index -= 1
 			SelectSound.play()
 			on_select()
-		elif event.is_action_pressed(indexP_btn):
+		elif Input.is_action_just_pressed(indexP_btn):
 			index += 1
 			SelectSound.play()
 			on_select()

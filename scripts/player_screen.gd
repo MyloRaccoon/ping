@@ -4,11 +4,8 @@ var everyone_ready = false
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
-	if event is InputEventJoypadButton:
-		if global.players[event.device] or event.is_action_pressed("join"+str(event.device)):
-			player_join(event.device)
-
-	elif event.is_action_pressed("join1"): player_join(1)
+	
+	if event.is_action_pressed("join1"): player_join(1)
 	elif event.is_action_pressed("join2"): player_join(2)
 	elif event.is_action_pressed("join3"): player_join(3)
 	elif event.is_action_pressed("join4"): player_join(4)

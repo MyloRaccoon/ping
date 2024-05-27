@@ -46,3 +46,15 @@ var playing : bool = false
 var last_ball_velocity
 
 var winner
+
+func intro_finished():
+	MaloTrueBanger.play()
+
+func _ready():
+	MaloIntro.connect("finished", intro_finished)
+	MaloIntro.play()
+	
+
+func _input(event):
+	if event.is_action_pressed("sound_cut"):
+		AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))

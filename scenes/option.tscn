@@ -184,6 +184,13 @@ label = "zone"
 [node name="transition" parent="." instance=ExtResource("5_51q3p")]
 visible = false
 
+[node name="Label" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 600.0
+offset_right = 265.0
+offset_bottom = 623.0
+text = "press C to mute/unmute sounds"
+
 [connection signal="pressed" from="menuMenu/goal" to="." method="_on_goal_pressed"]
 [connection signal="pressed" from="menuMenu/timer" to="." method="_on_timer_pressed"]
 [connection signal="pressed" from="menuMenu/play" to="." method="_on_play_pressed"]
