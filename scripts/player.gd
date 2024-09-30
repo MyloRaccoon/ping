@@ -36,4 +36,3 @@ func _physics_process(_delta):
 				HitSound.play()
 				var impulse = -c.get_normal() * push_force
 				c.get_collider().apply_central_impulse(impulse)
-

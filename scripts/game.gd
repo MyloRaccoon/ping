@@ -40,6 +40,9 @@ func _ready():
 	$goal1/p1Zone/CollisionShape2D.disabled = !(global.map == "zone")
 	$goal2/p2Zone/CollisionShape2D.disabled = !(global.map == "zone")
 
+func distance_between_points(point1: Vector2, point2: Vector2):
+	return sqrt((point2.x - point1.x)**2 + (point2.y - point1.y)**2)
+
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 		if !pausing and global.playing:
@@ -66,6 +69,10 @@ func _process(_delta):
 			$Timers/timerLB.text = "Prolongation !"
 	$pts1.text = str(pts1)
 	$pts2.text = str(pts2)
+	
+	if distance_between_points($middleBallSpawnPoint.position, $ball.position) > 1000:
+		print(true)
+		new_ball($middleBallSpawnPoint.position)
 
 func _on_goal_1_body_entered(body):
 	if body in get_tree().get_nodes_in_group("ball"):
@@ -147,5 +154,3 @@ func _on_transition_exited(msg):
 	match msg:
 		"option": get_tree().change_scene_to_file("res://scenes/option.tscn")
 		"win": get_tree().change_scene_to_file("res://scenes/win_screen.tscn")
-
-
