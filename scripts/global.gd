@@ -23,12 +23,6 @@ func color_taken(color : int, player : int):
 	var i = 0
 	while i < len(player_skin) and not taken:
 		if player_skin[i] == color and i != player and players[i]:
-			print("-----")
-			print("player "+str(player)+" tried color "+str(color))
-			print("player "+str(i)+" took it")
-			print("player"+str(i)+"active : " + str(players[i]))
-			print("player_skin[i] = color : " + str(player_skin[i]==color))
-			print("i != player : " + str(i!=player))
 			taken = true
 		i+=1
 	return taken

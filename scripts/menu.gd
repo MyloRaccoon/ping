@@ -2,7 +2,7 @@ extends Control
 
 signal pressed(btn)
 
-@export var checkbox : bool
+@export var checkbox: bool
 @export var orientation : String
 @export var default: int
 var indexP_btn
@@ -23,8 +23,8 @@ func get_buttons():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if N_button > 0:
-		for button in buttons:
-			button.checkbox = checkbox
+		#for button in buttons:
+			#button.checkbox = checkbox
 		set_orientation(orientation)
 		on_hover()
 		if checkbox:
@@ -53,9 +53,9 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			OkSound.play()
 			var btn = buttons[index]
-			if checkbox:
+			if is_instance_of(btn, Checkbox):
 				select(btn)
-			emit_signal("pressed", btn.label)
+			pressed.emit(btn.message)
 
 func on_hover():
 	if index >= N_button:
@@ -66,13 +66,13 @@ func on_hover():
 
 func hover(btn):
 	for button in buttons:
-		button.hovered = false
-	btn.hovered = true
+		button.hover(false)
+	btn.hover(true)
 
-func select(btn):
-	for button in buttons:
-		button.selected = false
-	btn.selected = true
+func select(btn: Checkbox):
+	for button: Checkbox in buttons:
+		button.select(false)
+	btn.select(true)
 
 func activate(boolean):
 	active = boolean
@@ -80,7 +80,7 @@ func activate(boolean):
 		on_hover()
 	else:
 		for button in buttons:
-			button.hovered = false
+			button.hover(false)
 
 func add_button(btn):
 	add_child(btn)

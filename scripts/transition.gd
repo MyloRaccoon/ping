@@ -37,10 +37,10 @@ func _on_enter_visible_on_screen_notifier_2d_screen_exited():
 	transitioning = false
 	hide()
 	entering = false
-	emit_signal("entered")
+	entered.emit()
 
 func _on_exit_visible_on_screen_notifier_2d_screen_entered():
 	transitioning = false
 	hide()
 	exiting = false
-	emit_signal("exited", exit_msg)
+	exited.emit(exit_msg)

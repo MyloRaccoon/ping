@@ -23,9 +23,10 @@ func _process(_delta):
 
 func _on_play_pressed(btn):
 	match btn:
-		"play": 
+		"local game": 
 			GoalSound.play()
 			$transition.exit("game")
+		"online game": $transition.exit("online")
 		"players": $transition.exit("players")
 		"controls": $transition.exit("controls")
 		"quit": $transition.exit("quit")
@@ -33,10 +34,10 @@ func _on_play_pressed(btn):
 
 func _on_goal_pressed(btn):
 	match btn:
-		"plus":
+		"+":
 			if global.goal < 20:
 				global.goal += 1
-		"minus":
+		"-":
 			if global.goal > 3:
 				global.goal -= 1
 		"reset":
@@ -45,18 +46,18 @@ func _on_goal_pressed(btn):
 
 func _on_timer_pressed(btn):
 	match btn:
-		"plus":
+		"+":
 			if global.timer < 120:
 				global.timer += 5
-		"minus":
+		"-":
 			if global.timer > 10:
 				global.timer -= 5
 		"reset":
 			global.timer = 60
 
-func _on_finish_mod_menu_pressed(btn):
+func _on_finish_mod_menu_pressed(btn: String):
 	match btn:
-		"tng": 
+		"timer and goal": 
 			global.timer_active = true
 			global.goal_active = true
 		"timer":
@@ -68,12 +69,13 @@ func _on_finish_mod_menu_pressed(btn):
 
 
 func _on_map_modifier_menu_pressed(btn):
-	global.map = btn
+	global.map = btn.trim_suffix("     ")
 
 
 func _on_transition_exited(msg):
 	match msg:
 		"game": get_tree().change_scene_to_file("res://scenes/game.tscn")
+		"online": get_tree().change_scene_to_file("res://scenes/multi_screen.tscn")
 		"players": get_tree().change_scene_to_file("res://scenes/player_screen.tscn")
 		"controls": get_tree().change_scene_to_file("res://scenes/controls_screen.tscn")
 		"quit": get_tree().quit(0)

@@ -1,10 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://b60swerlqj70r"]
+[gd_scene load_steps=3 format=3 uid="uid://b60swerlqj70r"]
 
 [ext_resource type="Script" path="res://scripts/button.gd" id="1_jh4i8"]
 
-[node name="button" type="Node2D" groups=["btn"]]
-position = Vector2(384, 264)
+[sub_resource type="LabelSettings" id="LabelSettings_3iy7a"]
+font_size = 150
+
+[node name="button" type="Label" groups=["btn"]]
+offset_right = 53.0
+offset_bottom = 205.0
 scale = Vector2(0.15, 0.15)
+text = "button"
+label_settings = SubResource("LabelSettings_3iy7a")
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("1_jh4i8")
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="hover" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.494118, 0.494118, 0.494118, 1)

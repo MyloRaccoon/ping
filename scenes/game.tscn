@@ -276,12 +276,22 @@ color = Color(0, 0, 0, 0.952941)
 orientation = "v"
 
 [node name="btn_resume" parent="PauseMenu/menu" instance=ExtResource("5_6syb2")]
-position = Vector2(584, 320)
-label = "resume"
+layout_mode = 0
+offset_left = 536.0
+offset_top = 304.0
+offset_right = 1085.0
+offset_bottom = 509.0
+text = "resume"
+message = "resume"
 
 [node name="btn_quit2" parent="PauseMenu/menu" instance=ExtResource("5_6syb2")]
-position = Vector2(576, 448)
-label = "quit"
+layout_mode = 0
+offset_left = 552.0
+offset_top = 400.0
+offset_right = 841.0
+offset_bottom = 605.0
+text = "quit"
+message = "quit"
 
 [node name="Label" type="Label" parent="PauseMenu"]
 offset_left = 480.0

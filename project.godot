@@ -31,6 +31,10 @@ MaloTrueBanger="*res://assets/audio/malo_true_banger.tscn"
 window/size/viewport_height=638
 window/stretch/mode="viewport"
 
+[global_group]
+
+btn=""
+
 [input]
 
 ui_accept={
