@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt68putptsb7m"]
+
+[ext_resource type="Script" path="res://scripts/multi_players_screen.gd" id="1_74cpo"]
+[ext_resource type="PackedScene" uid="uid://b4o1hqb1pdgxc" path="res://scenes/multi_player_frame.tscn" id="1_mkv4g"]
+[ext_resource type="PackedScene" uid="uid://cpu6f4r417uhj" path="res://scenes/transition.tscn" id="3_64s4b"]
+
+[node name="multi_players_screen" type="Node2D"]
+script = ExtResource("1_74cpo")
+
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[node name="player1_host" parent="." instance=ExtResource("1_mkv4g")]
+position = Vector2(192, 144)
+index = 1
+
+[node name="player2" parent="." instance=ExtResource("1_mkv4g")]
+position = Vector2(448, 144)
+index = 2
+
+[node name="player3" parent="." instance=ExtResource("1_mkv4g")]
+position = Vector2(704, 144)
+index = 3
+
+[node name="player4" parent="." instance=ExtResource("1_mkv4g")]
+position = Vector2(960, 144)
+index = 4
+
+[node name="transition" parent="." instance=ExtResource("3_64s4b")]
+visible = false
+
+[connection signal="exited" from="transition" to="." method="_on_transition_exited"]

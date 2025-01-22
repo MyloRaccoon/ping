@@ -11,6 +11,12 @@ var n_frame_active
 
 var scene_after_control = "res://scenes/player_screen.tscn"
 
+var is_host: bool
+var online_ip_address: String = "127.0.0.1"
+var online_port: int = 8910
+var online_max_client = 4
+var online_name: String
+
 func get_n_player_ready():
 	var n = 0
 	for is_ready in players:

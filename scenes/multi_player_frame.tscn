@@ -1,0 +1,114 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4o1hqb1pdgxc"]
+
+[ext_resource type="Script" path="res://scripts/multi_player_frame.gd" id="1_5epvs"]
+[ext_resource type="Texture2D" uid="uid://b5bwhre23ggax" path="res://assets/inGame/player.png" id="1_iy0sf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_om4lf"]
+resource_local_to_scene = true
+font_color = Color(0.509804, 0.509804, 0.509804, 1)
+
+[node name="multi_player_frame" type="Node2D"]
+script = ExtResource("1_5epvs")
+
+[node name="active" type="Node2D" parent="."]
+
+[node name="outline" type="ColorRect" parent="active"]
+visible = false
+offset_left = -72.0
+offset_top = -88.0
+offset_right = 72.0
+offset_bottom = 104.0
+
+[node name="bg" type="ColorRect" parent="active"]
+offset_left = -64.0
+offset_top = -80.0
+offset_right = 64.0
+offset_bottom = 96.0
+color = Color(0.392157, 0.392157, 0.392157, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="name" type="Label" parent="active"]
+offset_left = -64.0
+offset_top = -80.0
+offset_right = 64.0
+offset_bottom = -57.0
+text = "Player 1"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="bg_img" type="ColorRect" parent="active"]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="right" type="Label" parent="active"]
+offset_left = -72.0
+offset_top = 64.0
+offset_right = 56.0
+offset_bottom = 87.0
+text = ">
+"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="left" type="Label" parent="active"]
+offset_left = -56.0
+offset_top = 64.0
+offset_right = 72.0
+offset_bottom = 87.0
+text = "<"
+metadata/_edit_use_anchors_ = true
+
+[node name="lbl_ready" type="Label" parent="active"]
+offset_left = -64.0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 87.0
+text = "READY"
+label_settings = SubResource("LabelSettings_om4lf")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="active"]
+position = Vector2(-1.19209e-06, -1.19209e-06)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_iy0sf")
+
+[node name="cross" type="CanvasGroup" parent="active"]
+visible = false
+rotation = 0.785398
+
+[node name="ColorRect" type="ColorRect" parent="active/cross"]
+offset_left = -64.0
+offset_top = -4.0
+offset_right = 63.0
+offset_bottom = 4.0
+color = Color(0.54902, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="active/cross"]
+offset_left = -4.0
+offset_top = -64.0
+offset_right = 4.0
+offset_bottom = 63.0
+color = Color(0.54902, 0, 0, 1)
+
+[node name="inactive" type="Node2D" parent="."]
+
+[node name="bg" type="ColorRect" parent="inactive"]
+offset_left = -64.0
+offset_top = -80.0
+offset_right = 64.0
+offset_bottom = 96.0
+color = Color(0.392157, 0.392157, 0.392157, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="tojoin" type="Label" parent="inactive"]
+offset_left = -47.0
+offset_top = -28.0
+offset_right = 51.0
+offset_bottom = 21.0
+text = "Waiting for someone..."
+autowrap_mode = 2
